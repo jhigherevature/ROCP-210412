@@ -1,4 +1,4 @@
-### Step 6: Install DBeaver
+# [Week 2] - Install DBeaver
 
 ## Prerequisite
 * Completed PostgreSQL installation
