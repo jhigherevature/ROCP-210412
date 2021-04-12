@@ -1,4 +1,7 @@
+// Package declaration
 package basics;
+
+public class Hello {
 	// single-line comment
 
 	/* 
@@ -6,8 +9,7 @@ package basics;
 	 * which spans multiple lines
 	 * until the terminator
 	 */
-
-class HelloWorld {
+	
 	public static void main(String[] args) {
 		System.out.println("Hello World!");
 	}
