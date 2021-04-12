@@ -1,10 +1,12 @@
 
 public class Person {
 
-	public static void main(String[] args) {
-		 String name;
-		 String address;
-		 long ID;
-		 int age;
-	}
+	
+		 public String name;
+		 public String address;
+		 public long ID;
+		 public int age;
+	
 }
+
+
