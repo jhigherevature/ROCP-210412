@@ -4,7 +4,6 @@ public class Ex2 {
 
 	public static void main(String[] args) {
 	
-		public class primTypes() {
 			 short s = 10000;
 			 System.out.println(s);
 			 char c = 'a';

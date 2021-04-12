@@ -5,14 +5,14 @@ public class dataTypes {
 	public static void main(String[] args) {
 		
 	
-			 public byte b = 121;
-			 public short s = 10000;
-			 public char c = 'a';
-		 	 public int i = 42;
-			 public long l = 80532981324l;
-			 public float f = 234098234.234f;
-			 public double d = 324981340;
-			 public boolean bool = true;
+			  byte b = 121;
+			  short s = 10000;
+			  char c = 'a';
+		 	  int i = 42;
+			  long l = 80532981324l;
+			  float f = 234098234.234f;
+			  double d = 324981340;
+			  boolean bool = true;
 			 
 			 System.out.println(b);
 			 System.out.println(s);

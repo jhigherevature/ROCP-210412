@@ -11,5 +11,7 @@ public class simulator {
 		System.out.println(d.age);
 		
 		d.bark();
+		d.mark();
+		
 	}
 }
