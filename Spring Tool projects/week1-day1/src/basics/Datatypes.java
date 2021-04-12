@@ -4,13 +4,13 @@ public class Datatypes
 {
 	public static void main(String[] args)
 	{
-		byte b = 1;
-		short s = 1;
+		byte b = 120;
+		short s = 12345;
 		char c = 'c';
-		int i = 1;
-		long l = 1l;
-		float f = 1f;
-		double d = 1;
+		int i = 1_000_000;
+		long l = 1_000_000_000l;
+		float f = 1.5f;
+		double d = 1.5;
 		boolean boo = true;
 		
 		System.out.println(b);
