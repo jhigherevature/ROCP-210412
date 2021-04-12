@@ -59,10 +59,4 @@ public class Person {
 		System.out.println("Age: " + this.age);
 	}
 	
-public static class TestPerson{
-	public static void main(String[] args) {
-		Person person = new Person("Mike", "1234 Anytown USA", 123456, 39);
-		person.print();
-	}
-}
 }
