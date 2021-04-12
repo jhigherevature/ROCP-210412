@@ -8,8 +8,8 @@ public class Datatypes {
 		short s = 23;
 		char c = 'a';
 		int i = 123;
-		long l = 12345678L;
-		float f = 12.34F;
+		long l = 12345678l;
+		float f = 12.34f;
 		double d = 12.3456;
 		boolean bool = true;
 		

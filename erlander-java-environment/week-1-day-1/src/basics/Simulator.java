@@ -9,6 +9,10 @@ public class Simulator {
 		person.print();
 		System.out.println("------------------------------");
 		defaultPerson.print();
+		
+		person.setName("Michael");
+		System.out.println("------------------------------");
+		person.print();
 	}
 
 }
