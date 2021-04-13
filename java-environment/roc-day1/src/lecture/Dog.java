@@ -1,9 +1,9 @@
 package lecture;
 
 public class Dog {
-	String name;
-	int age;
-	String breed;
-	double weight;
+	public String name;
+	public int age;
+	public String breed;
+	public double weight;
 
 }

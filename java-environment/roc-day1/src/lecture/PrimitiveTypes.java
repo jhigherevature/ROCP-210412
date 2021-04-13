@@ -10,6 +10,6 @@ public class PrimitiveTypes {
 	long l = 1_000_000_000l;//64 bit whole number, l denotes
 	float f = 1_000_000_000.00f;// 32 bit decimal point number
 	double d = 1_000_000_000.00;//64 bit decimal point number
-	boolean bool = true;//either true or false
+	boolean bool = true;//either true(1) or false(0)
 	char c = 'c';// alpha characters using single letters
 }
