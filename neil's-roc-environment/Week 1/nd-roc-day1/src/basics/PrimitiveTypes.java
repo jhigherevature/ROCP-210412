@@ -3,7 +3,7 @@ package basics;
 public class PrimitiveTypes {
 	
 	/* 
-	 * A variable is a contruct that is used to hold onto some information.
+	 * A variable is a construct that is used to hold onto some information.
 	 * 
 	 * 
 	 * 
