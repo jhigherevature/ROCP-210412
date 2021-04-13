@@ -14,7 +14,7 @@ public class Simulator {
 		 * static means the method can be invoked without creating an object from the class it is in
 		 * */
 	//Return Type(required)
-	/* void
+	/* void means the method has no return type
 	 * */
 	
 	//Method Name(required)
@@ -25,7 +25,7 @@ public class Simulator {
 	//}
 	//Return type must match the DataType of the method
 	
-	//add method with a int DataType so it must return a int
+	//add method with a int DataType/Return Type so it must return a int
 	public static int add(int a, int b) {
 		int sum = a + b;
 		/*Return keyword

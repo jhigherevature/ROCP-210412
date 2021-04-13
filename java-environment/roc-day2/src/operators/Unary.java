@@ -2,6 +2,21 @@ package operators;
 
 public class Unary {
 	public static void main(String[] args) {
-		System.out.println();
+		int post = 10;
+		int pre = 10;
+		
+		System.out.println(post);	// 10
+		System.out.println(post++);	// 10
+		System.out.println(post);	// 11
+		
+		System.out.println(pre);	// 10
+		System.out.println(++pre);	// 11
+		System.out.println(pre);	// 11
+		
+		System.out.println(true);
+		System.out.println(false);
+		
+		System.out.println(!true);	// false
+		System.out.println(!false);	// true
 	}
 }
