@@ -6,6 +6,16 @@ public class Dog {
 	double weight;
 	String breed;
 	
+//	default variables seem to break it
+	
+//	static initializer block
+	{
+	name = "Rudolph";
+	age = 3;
+	weight = 30;
+	breed = "unknown";
+	}
+	
 	public void bark()	{
 		System.out.println("bark, bark");
 	}
