@@ -5,13 +5,13 @@ public class DoWhile {
  *   using a do-while loop, print letters of the alphabet
  */
 	public static void main(String[] args) {
-		char alpha = 'a';
+		char c = 'a';
 	    do
 	    {
-	    	System.out.print(alpha);
-	        alpha++;
+	    	System.out.print(c);
+	        c++;
 	    } 
-	        while (alpha <= 'z');
+	        while (c <= 'z');
 	    
 	}
 	}
