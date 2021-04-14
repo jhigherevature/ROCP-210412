@@ -18,7 +18,7 @@ public class simulator {
 		
 
 		Dog Brandon = new Dog();
-		System.out.println(Brandon.name + "name of Brandon dog object");
+		System.out.println(Brandon.name + " name of Brandon dog object");
 		
 		Dog dog = new Dog();
 		System.out.println(dog.name);
