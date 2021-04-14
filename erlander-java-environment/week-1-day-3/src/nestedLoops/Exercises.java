@@ -7,8 +7,10 @@ public class Exercises {
 		int col;
 		char letter;
 		int i;
-		String[] firstNames = {"Adam", "Alexis", "Dennis", "Jose", "Jessica", "Meghan", "Memphis", "Nicky", "Sarah", "William"};
-		String[] lastNames = {"Adamson", "Bond", "Brown", "Johnson", "Gallagher", "Smith", "Thompson", "Perez", "Snow", "Tran"};
+		String[] firstNames = { "Adam", "Alexis", "Dennis", "Jose", "Jessica", "Meghan", "Memphis", "Nicky", "Sarah",
+				"William" };
+		String[] lastNames = { "Adamson", "Bond", "Brown", "Johnson", "Gallagher", "Smith", "Thompson", "Perez", "Snow",
+				"Tran" };
 
 		// exercise
 		for (row = 1; row <= 5; row++) {
@@ -38,12 +40,12 @@ public class Exercises {
 				}
 			}
 		}
-		
-		//bonus 2
-		for(String firstName : firstNames) {
-			for(String lastName : lastNames) {
+
+		// bonus 2
+		for (String firstName : firstNames) {
+			for (String lastName : lastNames) {
 				System.out.println(firstName + " " + lastName);
-			}			
+			}
 		}
 
 	}
