@@ -3,7 +3,7 @@ package basics;
 import second.Cat;
 
 public class Simulator {
-	@SuppressWarnings("unused")
+	
 	public static void main(String[]args) {
 		Dog dog = new Dog();
 		dog.name = "Milo";
