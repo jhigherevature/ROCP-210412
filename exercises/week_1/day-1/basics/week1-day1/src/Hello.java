@@ -11,6 +11,8 @@ public class Hello {
 	p.ID = 123;
 	System.out.println(p.address);
 	
+	p.Scream();
+	
 	
  	}
 }
