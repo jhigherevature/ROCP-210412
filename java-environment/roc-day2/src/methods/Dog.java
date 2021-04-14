@@ -7,7 +7,8 @@ public class Dog {
 	public static int value = 15;
 	
 	// This is a constructor
-	// constructors are used to initialize fields on objects
+	// constructors are used to initialize fields
+	// on objects
 	public Dog (String name, int age, String breed) {
 		super();
 		this.name = name;
