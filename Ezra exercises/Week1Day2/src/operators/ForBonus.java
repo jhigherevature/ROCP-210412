@@ -2,17 +2,11 @@ package operators;
 
 public class ForBonus {
 	
-	public static void main(String[] args) {
-		printOdd();
-		
-	
-	}
-	public static void printOdd() {
-		for (int count = 0; count == 100; ++count) {
-			if (count % 2 == 1) {
-				System.out.println(count);
+	public  void printOdd() {
+		for (int i = 100; i >= 0; --i) {
+			if (i % 2 == 1) {
+				System.out.println(i);
 				}
-//			else {continue;}
 		}
 	}
 }

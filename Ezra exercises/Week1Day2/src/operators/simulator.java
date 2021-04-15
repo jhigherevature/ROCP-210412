@@ -42,7 +42,12 @@ public class simulator {
 		GetPi pi = new GetPi();
 		pi.getPi();
 		System.out.println(pi.getPi());
+
+//		???
+		toString(prOdd);
 		
+//		alphabet array
+//		getAlphabetArray array = new getAlphabetArray();
 		
 		
 	}
