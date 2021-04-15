@@ -39,19 +39,83 @@ public class MethodsWParam {
 		return array;
 	}
 	
-//	bonus 1 methodWParamaters
-	public void findFirstWord(String a, String b) {
-//		a = ;
-//		b = ;
-		String a1 = a.substring(0, 1);
-		String b1 = b.substring(0, 1);
-		if (a1 == b1) {
-//			then move onto next letter
-		}
-
-	}
+////	bonus 1 methodWParamaters
+//	public void findFirstWord(String a, String b) {
+////		a = ;
+////		b = ;
+//		String a1 = a.substring(0, 1);
+//		String b1 = b.substring(0, 1);
+//		if (a1 == b1) {
+////			then move onto next letter
+//		}
+//
+//	}
 	
+//	bonus 2 Methods With Parameters
+
+	public void displayArrayStatistics(int[] a, int[] b) {
+//		System.out.println(a[0]);		//checking if input can work
+//		System.out.println(b[0]);		//checking if input can work
+//		part 1 which array contains more even numbers?
+		int evenCountA = 0;
+		int evenCountB = 0;
+		int Count3A = 0;
+		int Count3B = 0;
+		for(int i=0; i<=a.length-1;i++) {
+			if (a[i]%2 == 0) {
+				evenCountA++;
+			}
+		}
+		for(int j=0; j<=b.length-1;j++) {
+			if (b[j]%2 == 0) {
+				evenCountB++;
+			}
+		}
+		if (evenCountA > evenCountB) {
+			System.out.println("A contains more even numbers");
+		}
+		else if (evenCountA < evenCountB) {
+				System.out.println("B contains more even numbers");
+		}
+		else {
+			System.out.println("Neither A nor B contains more even numbers");
+		}
+		
+//	part 2 count and compare amount of data in each
+		if (a.length > b.length) {
+			System.out.println("A contains more data");
+		}
+		else if (a.length < b.length) {
+				System.out.println("B contains more data");
+		}
+		else {
+			System.out.println("A and B contain the same amount of data");			
+			}
+			
+//	part 3 which array contains more values that are multiple of 3
+		
+		for(int k=0; k<=a.length-1;k++) {
+			if (a[k]%3 == 0) {
+				Count3A++;
+			}
+		}
+		for(int m=0; m<=b.length-1;m++) {
+			if (b[m]%3 == 0) {
+				Count3B++;
+			}
+		}
+		if (Count3A > Count3B) {
+			System.out.println("A contains more numbers divisible by 3");
+		}
+		else if (Count3A < Count3B) {
+				System.out.println("B contains more even numbers divisible by 3");
+		}
+		else {
+			System.out.println("Neither A nor B contains more numbers divisible by 3");
+		}
+	}	
 }
+
 
 
 
