@@ -1,4 +1,4 @@
-package inheritance;
+package ooppillars;
 
 public class BlueHeeler extends Dog {
 
