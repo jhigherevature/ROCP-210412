@@ -2,12 +2,12 @@ package strings;
 
 public class StringTiming {
 	// This is used to control how many strings we make
-	static int n = 200_000;
+	static int n = 4;
 
 	public static void main(String[] args) {
 		createAlotOfStrings();
-//		createAlotStringBuilder();
-//		createAlotStringBuffer();
+		createAlotStringBuilder();
+		createAlotStringBuffer();
 	}
 
 	/*
@@ -27,6 +27,7 @@ public class StringTiming {
 		long timeInit = System.currentTimeMillis();
 		for (int i = 0; i < n; i++) {
 			s = s.concat("a");
+			System.out.println(s);
 		}
 		long timeEnd = System.currentTimeMillis();
 		System.out.println("Strings took: " + (timeEnd - timeInit) + " ms");
@@ -37,6 +38,7 @@ public class StringTiming {
 		long timeInit = System.currentTimeMillis();
 		for (int i = 0; i < n; i++) {
 			sb.append("a");
+			System.out.println(sb);
 		}
 		long timeEnd = System.currentTimeMillis();
 		System.out.println("String Builder took: " + (timeEnd - timeInit) + " ms");
@@ -47,6 +49,7 @@ public class StringTiming {
 		long timeInit = System.currentTimeMillis();
 		for (int i = 0; i < n; i++) {
 			sb.append("a");
+			System.out.println(sb);
 		}
 		long timeEnd = System.currentTimeMillis();
 		System.out.println("String Buffer took: " + (timeEnd - timeInit) + " ms");

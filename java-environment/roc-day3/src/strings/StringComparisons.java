@@ -10,8 +10,9 @@ public class StringComparisons {
 		System.out.println("s2: " + s2);
 		System.out.println("s3: " + s3);
 		
-//		System.out.println(s1 == s2); // true
-//		System.out.println(s1 == s3); // false
-//		System.out.println(s1.equals(s3)); // true
+		System.out.println(s1 == s2); // true
+		System.out.println(s1 == s3); // false
+		System.out.println(s1.equals(s3)); // true
+		
 	}
 }
