@@ -21,13 +21,11 @@ Leverage Java, Maven, JDBC and SQL to create an application that simulates simpl
     * Approving/denying accounts
     * withdrawing, depositing, transferring from all accounts
     * canceling accounts
-* All information should be persisted using text files and serialization
 * 100% test coverage is expected using JUnit
 * You should be using TDD
 * Logging should be accomplished using Log4J
 * All transactions should be logged using Log4J
 * Create an SQL script that will create a user in an SQL database and a table schema for storing your bank users and account information.
-* Your database should include at least 1 stored procedure.
 * Have your bank application connect to your SQL database using JDBC and store all information that way.
 * You should use the DAO design pattern for data connectivity.
 
@@ -35,3 +33,5 @@ Leverage Java, Maven, JDBC and SQL to create an application that simulates simpl
 * Password Hashing
 * Time Stamping
 * Run from the command line
+* All information should be persisted using text files and serialization
+* Your database should include at least 1 stored procedure.
