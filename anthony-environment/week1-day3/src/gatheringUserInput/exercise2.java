@@ -29,5 +29,6 @@ public class exercise2 {
                 break;
             }
         }
+        textBot.close();
     }
 }
