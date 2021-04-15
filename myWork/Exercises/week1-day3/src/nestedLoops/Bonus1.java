@@ -14,7 +14,6 @@ public class Bonus1 {
 			
 			letterArray[letterIndex] = letter;
 			letter++;
-		
 		}
 		
 		for (int numberIndex = 0; numberIndex < numberArray.length; numberIndex++) {

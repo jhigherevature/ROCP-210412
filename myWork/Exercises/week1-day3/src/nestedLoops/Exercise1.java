@@ -4,11 +4,10 @@ public class Exercise1 {
 	
 	public static void main(String[] args) {
 		
-		int rows = 5;
 		
-		for (int identifyRow = 1; identifyRow <= rows; identifyRow++) {
+		for (int row = 1; row < 6; row++) {
 			
-			for (int amount = 1; amount <= identifyRow; amount++) {
+			for (int amount = 0; amount < row; amount++) {
 				System.out.print("*");
 			} 
 			
