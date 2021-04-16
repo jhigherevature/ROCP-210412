@@ -8,9 +8,9 @@ public class Exercises {
 	
 	public static void main(String[] args) {
 		
-		//System.out.println(vowelAmount());
+		System.out.println(vowelAmount());
 		runAround();
-		
+		userInput.close();
 	}
 	public static int vowelAmount() {
 		
