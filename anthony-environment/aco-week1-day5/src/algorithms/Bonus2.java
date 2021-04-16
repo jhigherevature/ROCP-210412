@@ -3,7 +3,7 @@ package algorithms;
 import java.util.Arrays;
 
 public class Bonus2 {
-    public static void splitter(int[] input, int length) {
+    public static void mergeSorter(int[] input, int length) {
         if (length <= 1) {
             return;
         }
@@ -18,27 +18,23 @@ public class Bonus2 {
             right[i - center] = input[i];
         }
 
-        splitter(left, center);
-        splitter(right, length - center);
+        mergeSorter(left, center);
+        mergeSorter(right, length - center);
 
-        merger(input, left, right, left.length, right.length);
-    }
-
-    public static void merger(int[] input, int[] left, int[] right, int lLen, int rLen) {
         int i = 0; // input
         int j = 0; // left
         int k = 0; // right
 
         while (true) {
-            if (j < lLen & k < rLen) {
+            if (j < left.length & k < right.length) {
                 if (left[j] <= right[k]) {
                     input[i++] = left[j++];
                 } else {
                     input[i++] = right[k++];
                 }
-            } else if (j < lLen) {
+            } else if (j < left.length) {
                 input[i++] = left[j++];
-            } else if (k < rLen) {
+            } else if (k < right.length) {
                 input[i++] = right[k++];
             } else {
                 break;
@@ -49,7 +45,7 @@ public class Bonus2 {
     public static void main(String[] args) {
         int[] splitMe = { 1, 0, 5, 6, 3, 2, 3, 7, 9, 8, 4 };
         System.out.println(Arrays.toString(splitMe));
-        splitter(splitMe, splitMe.length);
+        mergeSorter(splitMe, splitMe.length);
         System.out.println(Arrays.toString(splitMe));
     }
 }
