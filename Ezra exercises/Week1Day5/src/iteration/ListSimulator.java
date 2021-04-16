@@ -1,24 +1,14 @@
 package iteration;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class ListSimulator {
-	
-	public static String firstLetter(String... words) {
-		/*
-		 * words:
-		 * [ "assembly", "binary", "compile" ]
-		 */
-		if (words[0].charAt(0) == words[1].charAt(0)) {
-			//do stuff...
-		}
-		return "";
-	}
-	
+
 	public static void main(String[] args) {
 		System.out.println("::: LISTS :::");
+		
 		List<String> alist = new ArrayList<String>();
 		alist.add("Assembly");
 		alist.add("Binary");
@@ -27,8 +17,6 @@ public class ListSimulator {
 		alist.add("Compile");
 		alist.add("DataStructure");
 		alist.add("Functions");
-		
-		alist.remove("Assembly");
 		
 		System.out.println("List - Enhanced For-Loop");
 		for (String name : alist) {
@@ -41,11 +29,12 @@ public class ListSimulator {
 			String name = i.next();
 			System.out.println(name);
 		}
-
-		System.out.println("List - While Loop");
-		Iterator<String> aItr = alist.iterator();
-		while (aItr.hasNext()) {
-			System.out.println(aItr.next());
-		}
+		
+		// 
+//		System.out.println("List - While Loop");
+//		Iterator<String> aItr = alist.iterator();
+//		while (aItr.hasNext()) {
+//			System.out.println(aItr.next());
+//		}
 	}
 }

@@ -10,8 +10,8 @@ public class GenericSimulator {
 		 * If a generic type is not provided on both
 		 * than 'Object' type is used implicitly
 		 */
-		GenericClass<Integer> intGc = new GenericClass<Integer> (15);
-		GenericClass<String> strGc = new GenericClass<String> ("Hello");
+		GenericClass intGc = new GenericClass<Integer> (15);
+		GenericClass<String> strGc = new GenericClass ("Hello");
 		
 		System.out.println(intGc);
 		System.out.println(strGc);

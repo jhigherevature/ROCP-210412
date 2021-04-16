@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class MapSimluator {
 	public static void main(String[] args) {
-		System.out.println("::: Maps :::");
+		System.out.println("::: IterableNodeStack :::");
 		Map<String, Integer> hMap = new HashMap<String, Integer>();
 		hMap.put("Assembly", 1);
 		hMap.put("Binary", 2);
