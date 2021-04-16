@@ -1,4 +1,4 @@
-package inheritance;
+package ooppillars;
 
 public class Cat extends Animals {
 	
@@ -8,5 +8,10 @@ public class Cat extends Animals {
 	
 	public Cat(String name, int age) {
 		super(name, "Cat", age);
+	}
+
+	@Override
+	public void eat(String food) {
+		// TODO Auto-generated method stub
 	}
 }

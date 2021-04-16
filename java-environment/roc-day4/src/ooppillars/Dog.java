@@ -1,8 +1,12 @@
-package inheritance;
+package ooppillars;
 
-public class Dog extends Animals {
+public class Dog extends Animals implements Carnivorous, Herbivorous {
 	
 	Collar collar = new Collar();
+	
+	public void eat(String dogFood) {
+		System.out.println("With my mouth full");
+	}
 	
 	public Dog() {
 		super();

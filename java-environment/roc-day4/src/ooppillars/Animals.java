@@ -1,9 +1,11 @@
-package inheritance;
+package ooppillars;
 
-public class Animals {
+public abstract class Animals {
 	public String name;
 	public String type;
 	public int age;
+	
+	public abstract void eat(String food);
 	
 //	static NameGenerator generator = new NameGenerator();
 	
