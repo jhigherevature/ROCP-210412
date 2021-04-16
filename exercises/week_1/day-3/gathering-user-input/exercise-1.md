@@ -1,4 +1,4 @@
-# Exercise One
+y# Exercise One
 
 Create a method that uses a Scanner to parse any input from the console (System.in) and prints out the number of vowels in the line.
 
