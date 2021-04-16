@@ -8,13 +8,13 @@ public class QueueSimulator {
 	public static void main(String[] args) {
 		System.out.println("::: QUEUES :::");
 		Queue<String> pQue = new PriorityQueue<String>();
+		pQue.add("Function");
 		pQue.add("Assembly");
+		pQue.add("DataStructure");
 		pQue.add("Binary");
 		pQue.add("Compile");
-		pQue.add("Compile");
-		pQue.add("Compile");
-		pQue.add("DataStructure");
-		pQue.add("Function");
+		
+		System.out.println(pQue);
 		
 		System.out.println("Queue - Enhanced For-Loop");
 		for (String name : pQue) {
