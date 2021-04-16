@@ -12,12 +12,12 @@ public class Bonus1 {
                 bubbles[i] = bubbles[i + 1];
                 bubbles[i + 1] = x;
                 if (i > 0) {
-                    --i;
+                    i--;
                 } else {
-                    ++i;
+                    i++;
                 }
             } else {
-                ++i;
+                i++;
             }
             System.out.println(Arrays.toString(bubbles) + " i=" + String.format("%2d", i));
         } while (i < (bubbles.length - 1));
