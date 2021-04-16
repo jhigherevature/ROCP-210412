@@ -7,9 +7,9 @@ public class Data implements Comparable<Data> {
 	@Override
 	public int compareTo(Data input) {
 		if (this.id > input.getId()) {
-			return 1;
-		} else if (this.id < input.getId()) {
 			return -1;
+		} else if (this.id < input.getId()) {
+			return 1;
 		} else {
 			return 0;
 		}
