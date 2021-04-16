@@ -11,7 +11,6 @@ public class ScannerUserInput {
 		input1=input1.replaceAll("[^aeiouAEIOU]", "");
 		
 		System.out.println("Vowels in above line are :" + input1);
-		
+	    scan1.close();
 	}
-
-}
+  }
