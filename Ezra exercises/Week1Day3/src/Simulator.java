@@ -23,5 +23,42 @@ public class Simulator {
 		int [] b = {4,5,6,7,8,9,};
 		mwp.displayArrayStatistics(a,b);
 		
+//		Scanner stuff
+		Scanner scan = new Scanner(System.in);
+		scannerVowelNum();
+	}
+
+	private static void scannerVowelNum() {
+		System.out.println("Give me some of that sweet sweet data");
+		Scanner scan = new Scanner(System.in);
+//		String S = scan.next();
+		String input = scan.nextLine();
+		System.out.println("You typed: "+ input);
+
+		int count = 0;
+		
+		for (int i = 0; i < input.length(); i++) {
+			
+		switch (input.charAt(i)) {
+		case 'a': 
+			count++;
+			break;
+		case 'e':
+			count++;
+			break;
+		case 'i': 
+			count++;
+			break;
+		case 'o':
+			count++;
+			break;
+		case 'u': 
+			count++;
+			break;
+		default:
+			break;
+		}
+		}
+		System.out.println("There are " + count + " vowels in your sentence.");
 	}
 }

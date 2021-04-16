@@ -44,7 +44,7 @@ public class simulator {
 		System.out.println(pi.getPi());
 
 //		???
-		toString(prOdd);
+//		toString(prOdd);
 		
 //		alphabet array
 //		getAlphabetArray array = new getAlphabetArray();

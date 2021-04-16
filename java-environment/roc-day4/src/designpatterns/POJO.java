@@ -21,7 +21,7 @@ package designpatterns;
 public class POJO {
 
 	int value;
-	boolean userCanContinue;
+	public boolean userCanContinue;
 	
 	public void performOpertaion() {
 		// do something

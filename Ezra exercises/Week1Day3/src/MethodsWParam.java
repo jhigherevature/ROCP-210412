@@ -39,17 +39,41 @@ public class MethodsWParam {
 		return array;
 	}
 	
-////	bonus 1 methodWParamaters
-//	public void findFirstWord(String a, String b) {
-////		a = ;
-////		b = ;
-//		String a1 = a.substring(0, 1);
-//		String b1 = b.substring(0, 1);
-//		if (a1 == b1) {
-////			then move onto next letter
-//		}
-//
-//	}
+//	bonus 1 methodWParamaters
+	public String findFirstWord(String a, String b) {
+		if (a.equalsIgnoreCase(b)) {
+			System.out.println("They are the same word");
+			return a;
+		}
+		a = a.toLowerCase();
+		b = b.toLowerCase();
+		String StrLen;
+		
+		if (a.length() <= b.length()) {
+			StrLen = a;
+		}
+		else {
+			StrLen = b;
+		}
+		
+		for (int i=0; i<StrLen.length(); i++) {
+			if (a.charAt(i) == b.charAt(i)) {
+				continue;
+			}
+			if (a.charAt(i) > b.charAt(i)) {
+				System.out.println(a +" is the first word");
+				return a;
+			}
+			if (a.charAt(i) < b.charAt(i)) {
+				System.out.println(b +" is the first word");
+				return b;
+			}
+		
+		}
+		return StrLen;
+
+	}
+	
 	
 //	bonus 2 Methods With Parameters
 
