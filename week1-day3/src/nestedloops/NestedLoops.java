@@ -1,14 +1,15 @@
 package nestedloops;
 
+// stars
+
 public class NestedLoops {
 	
 		public static void main(String[] args) {
-        String stars = "";
-		for (int i = 0; i <= 6; i++) {
-            for (int j = 1; j > i; j++) {
-            	stars += "*";
-            	System.out.println(stars);
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j <= i; j++) {
+              	System.out.print("*");
         }
+        System.out.println();
 		}		
 	}			
 			
