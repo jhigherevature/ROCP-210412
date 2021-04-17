@@ -22,7 +22,7 @@ public class OverloadPrecedence {
 		System.out.println("primitive int: " + i);
 	}
 	
-	public static void method(int i, int x) {
+	public static void method(long i, int x) {
 		System.out.println("primitive with two: " + i + ", and: " + x);
 	}
 	
