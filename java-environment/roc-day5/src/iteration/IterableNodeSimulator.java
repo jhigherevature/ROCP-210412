@@ -26,6 +26,5 @@ public class IterableNodeSimulator {
 		Iterator<Node> insIter = ins.iterator();
 		while (insIter.hasNext())
 			System.out.println(insIter.next());
-		
 	}
 }
