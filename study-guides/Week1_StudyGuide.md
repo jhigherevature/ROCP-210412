@@ -3,6 +3,7 @@
 You should be able to explain and apply the following topics:
 
 ### Fundamentals
+
 - Features, benefits, and drawbacks of the Java language
   - WORA (write once, run anywhere)
   - Backed by Oracle
@@ -11,7 +12,7 @@ You should be able to explain and apply the following topics:
   - Strongly/strictly typed
   - High level (e.g. memory handled via automatic garbage collection)
 - POJO vs Bean
-- Stack vs Heap
+- Stack vs Heap (stack holds prim variables and object pointers?)
 - Purpose and contents of the JDK, JRE, and JVM
 - Garbage collection (generally, what does the garbage collector do?)
 - Main method signature and significance
@@ -46,7 +47,7 @@ You should be able to explain and apply the following topics:
 - Control flow statements
   - for
   - enhanced for loop
-  - if/else 
+  - if/else
   - while
   - do-while
   - switch
@@ -89,6 +90,7 @@ You should be able to explain and apply the following topics:
 - Varargs
 
 ### OOP
+
 - Object-oriented programming principles
   - Abstraction
     - Abstract classes
@@ -109,6 +111,7 @@ You should be able to explain and apply the following topics:
   - When to use instead of abstract class
 
 ### Collections & Generics
+
 - Collections API
   - Inheritance hierarchy
   - List, Set, Map, and Queue interfaces and their differences
@@ -125,6 +128,7 @@ You should be able to explain and apply the following topics:
   - Diamond operator and type inference
 
 ### Exceptions
+
 - Class hierarchy
 - Error
 - Exception
