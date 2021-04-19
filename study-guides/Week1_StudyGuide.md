@@ -51,11 +51,18 @@ You should be able to explain and apply the following topics:
   - long//64 bit
 
 - Operators
+<<<<<<< HEAD
   - bnary//true false
     - pre/post increment/decrement//++x adds then shows, x++ shows then adds
     - not//!
     - instanceof//tests whether the object is an instance of the specified type (class or subclass or interface).
 
+=======
+  - unary
+    - pre/post increment/decrement
+    - not
+    - instanceof
+>>>>>>> 19268f2b4b948d9a8598da6e3e2c4b4366afc698
   - binary
     - mathematical//% is modulos & and ^exclusive or |inclusive or. 
     - logical//&& and ||or
