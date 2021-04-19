@@ -7,6 +7,7 @@ public class AnimalPicker {
 		Scanner scan = new Scanner(System.in);
 		
 		Flyable flyable = new Bat();
+		Flyable bird = new Bird();
 		flyable.fly();
 		flyable.soar();
 		
