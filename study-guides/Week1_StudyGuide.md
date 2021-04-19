@@ -30,7 +30,7 @@ You should be able to explain and apply the following topics:
   - double
   - long
 - Operators
-  - bnary
+  - unary
     - pre/post increment/decrement
     - not
     - instanceof
