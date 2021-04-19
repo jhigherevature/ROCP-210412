@@ -60,7 +60,7 @@ public class IterableNodeStack implements Iterable<Node> {
 				cursor = ret.getNext();
 			
 			return ret;
-		}		
+		}	
 	}
 }
 
