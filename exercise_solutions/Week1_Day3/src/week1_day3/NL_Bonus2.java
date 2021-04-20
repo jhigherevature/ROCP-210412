@@ -9,21 +9,19 @@ package week1_day3;
  *
  * @author Brooke Billadeau
  */
-public class NL_Bonus1 {
+public class NL_Bonus2 {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int i = 1;
-        for (char letter = 'A'; letter <= 'Z'; letter++){
-            System.out.print(letter + "-" );
-            for( ; ; ){
-                System.out.println(i);
-                i++;
-                break;
-            } //End of inner numbers
-        }//End of outer letters
-    } //End of Main
+        String[] First = {"Adam", "Alexis", "Dennis"};
+        String[] Second = {"Adamson", "Bond", "Brown"};
+        for (int i = 0; i <= First.length-1; i++){
+            for (int j = 0; j <= Second.length-1; j++){
+                System.out.println(First[i] + " " + Second[j]);
+            }
+        }
+    }
     
 }

@@ -3,24 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package week1_day2_part2;
+package week1_day5;
 
 /**
  *
  * @author Brooke Billadeau
  */
-public class While2 {
+public class Simulation {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int x = -10;
-        while (x <= 10){
-            if (x%2==0)
-            System.out.println(x);
-            x+=2;
-        }
+        weatherMachine wm = new weatherMachine();
+        wm.getWeatherReport();
     }
     
 }
