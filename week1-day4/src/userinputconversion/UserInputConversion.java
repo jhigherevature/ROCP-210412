@@ -33,8 +33,8 @@ public class UserInputConversion {
 				System.out.println("Try again. Acceptable input: 1,2,3,4,5");
 				break;
 			}
-		    if (i == 1 || i == 2 || i == 3 || i == 4);
-		    {
+		    if (i == 1 || i == 2 || i == 3 || i == 4)
+			    {
 	 		   System.out.println("Enter a value to convert: ");
 	           float j=sc.nextInt();
 			
