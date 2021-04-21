@@ -23,7 +23,7 @@ CREATE SCHEMA district
         home_address VARCHAR(100),
         emergency_contact VARCHAR(12),
         student_school INTEGER,
-        CONSTRAINT fk_student
+        CONSTRAINT fk_school
             FOREIGN KEY (student_school)
                 REFERENCES schools(school_id)
     )
