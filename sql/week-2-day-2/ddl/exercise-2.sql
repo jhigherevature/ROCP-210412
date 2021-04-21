@@ -1,0 +1,1 @@
+ALTER TABLE library.books RENAME book_id TO isbn_13;
