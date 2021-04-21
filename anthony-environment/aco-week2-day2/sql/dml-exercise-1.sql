@@ -1,0 +1,1 @@
+INSERT INTO bookstore.author VALUES (1006, 'Anthony Co');

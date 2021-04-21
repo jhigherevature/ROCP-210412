@@ -1,0 +1,1 @@
+DELETE FROM bookstore.books WHERE author = 1004;
