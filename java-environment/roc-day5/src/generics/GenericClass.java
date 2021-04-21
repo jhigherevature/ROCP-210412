@@ -5,18 +5,18 @@ package generics;
  * used for a class, at a later point in time (when you
  * create the objects)
  */
-public class GenericClass<Placeholder> {
-	private Placeholder info;
+public class GenericClass <T> {
+	private T info;
 	
-	public GenericClass (Placeholder info) {
+	public GenericClass (T info) {
 		this.info = info;
 	}
 	
-	public Placeholder getInfo() {
+	public T getInfo() {
 		return info;
 	}
 	
-	public void setInfo(Placeholder info) {
+	public void setInfo(T info) {
 		this.info = info;
 	}
 
