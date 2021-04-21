@@ -130,7 +130,7 @@ You should be able to explain and apply the following topics:
 
 ### OOP
 - Object-oriented programming principles
-  - Abstraction//iding certain details and showing only essential information to the user
+  - Abstraction//hiding certain details and showing only essential information to the user
     - Abstract classes//restricted class, can't be instantiated
     - Interfaces//completely abstract class that is used to group related methods with empty bodies. implement key word
   - Polymorphism
