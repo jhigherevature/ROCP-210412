@@ -1,0 +1,1 @@
+INSERT INTO writers.author VALUES (1002, 'A Book', 1996, 1996, 335 )

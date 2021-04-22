@@ -1,0 +1,1 @@
+INSERT INTO writers.authors VALUES (1001, 'Agatha Christie');
