@@ -17,7 +17,8 @@ CREATE SCHEMA examples;
 DROP TABLE IF EXISTS examples.employees;
 
 CREATE TABLE examples.employees (
-	emp_id SERIAL,
+-- use a sequence with a column that you define
+	emp_id INTEGER DEFAULT nextval('emp_id_seq') PRIMARY KEY,
 	emp_name VARCHAR(200),
 	emp_title VARCHAR(50),
 	emp_salary NUMERIC
