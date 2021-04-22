@@ -17,7 +17,6 @@ GRANT INSERT ON examples.employees TO customers;
 
 -- OR we can GRANT many AT the same time
 GRANT SELECT, UPDATE, DELETE ON examples.employees TO customers;
-
 /*
  * We can specify all tables/schemas/sequences, etc... on an entity
  * using the ALL keyword
