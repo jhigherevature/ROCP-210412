@@ -1,3 +1,8 @@
+--Create tables
+--* All basic validation should be done, such as trying to input negative amounts, overdrawing from accounts etc.
+--DATA validation ON this LEVEL??
+
+
 --CREATE SCHEMA project;
 
 CREATE TABLE project.account (
