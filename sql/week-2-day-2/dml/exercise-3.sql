@@ -1,0 +1,1 @@
+DELETE FROM library.books WHERE author = 1004;

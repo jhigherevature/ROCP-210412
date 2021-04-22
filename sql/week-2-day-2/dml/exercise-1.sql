@@ -1,0 +1,1 @@
+INSERT INTO library.author VALUES (DEFAULT, 'William Faulkner');
