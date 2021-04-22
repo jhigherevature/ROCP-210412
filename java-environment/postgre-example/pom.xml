@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com-revature</groupId>
+  <artifactId>postgre-example</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>postge-example</name>
+  <description>Basic example for Maven Postgre project</description>
+  
+  <!--
+	  Code Comments in XML (and markup languages in general)
+  		are mutli-line and use this syntax
+   -->
+  <properties>
+  		<maven.compiler.source>1.8</maven.compiler.source>
+  		<maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+  
+  <!-- Dependency refers to code that we need to incorporate
+  		In order for our project to actually run effectively
+   -->
+  <dependencies>
+  		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<dependency>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>42.2.19</version>
+		</dependency>
+  </dependencies>
+  
+</project>
