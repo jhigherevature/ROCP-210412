@@ -36,5 +36,13 @@ public class BluePrint {
 	 * 					- query DB based on user input
 	 * 				- withdraw from account
 	 * 					- query DB based on user input
+	 * 
+	 * 4 - Managing 'Login'
+	 * 		-If you create a class/static field in your simulator
+	 * 		that will keep a record of the current user's id,
+	 * 		this will give you easy ability to reference that user's
+	 * 		account info/other important data, more easily.
+	 * 			static int currentLoggedInId = 1006;
+	 * 
 	 */
 }
