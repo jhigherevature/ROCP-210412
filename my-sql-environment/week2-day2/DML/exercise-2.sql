@@ -1,0 +1,1 @@
+INSERT INTO Books VALUES (DEFAULT, 'Animal Farm',1002,1945,112);

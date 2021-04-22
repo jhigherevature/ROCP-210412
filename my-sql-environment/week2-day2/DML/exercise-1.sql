@@ -1,0 +1,1 @@
+INSERT INTO Writer VALUES (1006, 'New Author');
