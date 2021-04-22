@@ -26,6 +26,5 @@ public class SingletonSimulator {
 		EagerSingleton eager2 = EagerSingleton.getSingleton();
 		System.out.println("Eager Singleton: ");
 		System.out.println(eager1 == eager2);
-	
 	}
 }
