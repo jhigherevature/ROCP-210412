@@ -27,12 +27,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			 * a customer sequence, you can use DEFAULT if the
 			 * custom sequence is used as the default value
 			 */
-			String query = "INSERT INTO examples.employees VALUES (DEFAULT,?,?,?)";
+			String query = "INSERT INTO project.employee VALUES (DEFAULT,?,?,?,?)";
 			ps = conn.prepareStatement(query);
 			
-			ps.setString(1, emp.getEmp_name());
-			ps.setString(2, emp.getEmp_title());
-			ps.setDouble(3, emp.getEmp_salary());
+			ps.setString(1, emp.getFirst_name());
+			ps.setString(2, emp.getLast_name());
+			ps.setString(3, emp.getEmp_title());
+			ps.setString(4, emp.getEmp_pw());
 			
 			ps.executeUpdate();
 			
@@ -60,7 +61,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			 * markers using the marker's position (the indexing here
 			 * also starts at 1.
 			 */
-			String query = "SELECT * FROM examples.employees WHERE emp_id=?";
+			String query = "SELECT * FROM project.employee WHERE id_emp=?";
 			ps = conn.prepareStatement(query);
 			
 			ps.setInt(1, id);
@@ -69,10 +70,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			
 			while (rs.next()) {
 				emp = new Employee(
-						rs.getInt(1),
-						rs.getString(2),
-						rs.getString(3),
-						rs.getDouble(4)
+						rs.getInt("id_emp");
+						rs.getString("first_name");
+						rs.getString("last_name"),
+						rs.getString("emp_title"),
+						rs.getString("emp_pw")
 						);
 			}
 			
@@ -111,10 +113,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 				 * the column index (which starts at 1)
 				 * or the column name, based on the DB structure
 				 */
-				emp.setEmp_id(rs.getInt(1));
-				emp.setEmp_name(rs.getString(2));
+				emp.setEmp_id(rs.getString("id_emp"));
+				emp.setFirst_name(rs.getString("first-name"));
+
+				emp.setLast_name(rs.getString("last_name"));
 				emp.setEmp_title(rs.getString("emp_title"));
-				emp.setEmp_salary(rs.getDouble("emp_salary"));
+				emp.setEmp_pw(rs.getString("emp_pw"));
 				
 				// Add the new employee Object to our list
 				elist.add(emp);
