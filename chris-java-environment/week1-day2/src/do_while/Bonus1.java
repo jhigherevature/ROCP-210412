@@ -10,7 +10,7 @@ public class Bonus1 {
 		do
 		{
 			
-				System.out.println(letter);
+				System.out.print(letter + " ");
 				letter++;
 		}
 		

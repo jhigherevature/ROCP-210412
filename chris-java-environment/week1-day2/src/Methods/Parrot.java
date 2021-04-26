@@ -6,9 +6,9 @@ public class Parrot {
 
 	public static void main(String[] args) {
 		
-		Parrot p = new Parrot();
-		p.name = "Polly";
-		p.talk(p.name);
+		Parrot polly = new Parrot();
+		polly.name = "Polly";
+		polly.talk(polly.name);
 		
 
 	}

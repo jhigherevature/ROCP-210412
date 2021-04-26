@@ -4,11 +4,11 @@ public class Exercise1 {
 
 	public static void main(String[] args) {
 		
-		byte[] array = {21,22,23,24,25,26,27,28,29,30};
+		byte[] nums= {21,22,23,24,25,26,27,28,29,30};
 		
-		for (int a = 0; a < array.length; a++) {
+		for (int a = 0; a < nums.length; a++) {
 			
-			System.out.println(array[a]);
+			System.out.println(nums[a]);
 		}
 		
 

@@ -6,7 +6,7 @@ public class Person {
 		// TODO Auto-generated method stub
 		String name = "Chris";
 		String address = "123 Autumn Ln.";
-		long id = 12345;
+		long id = 12345L;
 		int age = 23;
 
 	}

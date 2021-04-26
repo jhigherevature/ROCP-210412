@@ -4,13 +4,18 @@ public class Exercise2 {
 
 	public static void main(String[] args) {
 		
-		int x = 102;
+		int x = -100;
 		
-		while (x > -100) {
+		while (x < 102) {
 			
-			System.out.println(x = x - 2);
+			if (x % 2 == 0) {
+				
+				System.out.println(x);
+			}
+			
+			++x;
 		}
-
+		
 	}
 
 }

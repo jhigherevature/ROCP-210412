@@ -1,18 +1,20 @@
-package conditional_statements;
+package test_ex2;
 
-public class Exercise1 {
+public class Ex1 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
-		boolean b = true;
+		boolean x = true;
 		
-		if(b) {
+		if (x) {
+			
 			System.out.println("argument was true");
-	}
+		}
+		
 		else {
+			
 			System.out.println("argument was false");
 		}
-	
 	}
+
 }

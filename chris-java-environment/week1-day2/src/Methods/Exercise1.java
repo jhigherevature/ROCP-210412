@@ -4,17 +4,18 @@ public class Exercise1 {
 
 	public static void main(String[] args) {
 		
-		Exercise1 e = new Exercise1();
+		Exercise1 random = new Exercise1();	
 		
-		System.out.println(e.randomNumber());
+		random.randomNumber();
 
 	}
 	
 	public int randomNumber() {
 		
-		int x = (int)(Math.random() * 49) + 1;
+		int d = (int) (Math.random() * 50);
 		
-		return x;
+		System.out.println(d);
+		return d;
 	}
 
 }
