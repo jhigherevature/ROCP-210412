@@ -1,0 +1,1 @@
+SELECT author, avg(page_count) FROM Books GROUP BY author ORDER BY avg(page_count) DESC;
