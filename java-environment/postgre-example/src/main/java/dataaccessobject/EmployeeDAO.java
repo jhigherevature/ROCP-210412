@@ -20,10 +20,11 @@ public interface EmployeeDAO {
 	 * or interaction with your database, those are really just
 	 * higher-level or more complex uses of these basic operations
 	 */
-	public boolean insertIntoEmployees(Employee emp);
+	public boolean insertIntoEmployees(Employee emp, Integer login_id);
 	public Employee selectEmployee(Integer id);
 	public List<Employee> selectAllEmployees();
 	public boolean updateEmployee(Employee emp);
 	public boolean deleteEmployee(Employee emp);
+	Employee selectEmployeeByLoginId(Integer id);
 	
 }

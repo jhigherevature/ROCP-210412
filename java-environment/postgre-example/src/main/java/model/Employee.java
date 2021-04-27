@@ -7,13 +7,23 @@ public class Employee implements Serializable {
 	private String emp_name;
 	private String emp_title;
 	private Double emp_salary;
+	private Integer login_id;
 
 	public Employee() {
 
 	}
 
-	public Employee(Integer emp_id, String emp_name, String emp_title, Double emp_salary) {
+	public Employee(Integer emp_id, String emp_name, String emp_title, Double emp_salary, Integer login_id) {
 		this.emp_id = emp_id;
+		this.emp_name = emp_name;
+		this.emp_title = emp_title;
+		this.emp_salary = emp_salary;
+		this.login_id = login_id;
+	}
+
+	// Used during creation
+	public Employee(String emp_name, String emp_title, Double emp_salary, Integer login_id) {
+		this.emp_id = null;
 		this.emp_name = emp_name;
 		this.emp_title = emp_title;
 		this.emp_salary = emp_salary;
@@ -51,6 +61,14 @@ public class Employee implements Serializable {
 		this.emp_salary = emp_salary;
 	}
 
+	public Integer getLogin_id() {
+		return login_id;
+	}
+
+	public void setLogin_id(Integer login_id) {
+		this.login_id = login_id;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -59,6 +77,7 @@ public class Employee implements Serializable {
 		result = prime * result + ((emp_name == null) ? 0 : emp_name.hashCode());
 		result = prime * result + ((emp_salary == null) ? 0 : emp_salary.hashCode());
 		result = prime * result + ((emp_title == null) ? 0 : emp_title.hashCode());
+		result = prime * result + ((login_id == null) ? 0 : login_id.hashCode());
 		return result;
 	}
 
@@ -91,12 +110,17 @@ public class Employee implements Serializable {
 				return false;
 		} else if (!emp_title.equals(other.emp_title))
 			return false;
+		if (login_id == null) {
+			if (other.login_id != null)
+				return false;
+		} else if (!login_id.equals(other.login_id))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "Employee [emp_id=" + emp_id + ", emp_name=" + emp_name + ", emp_title=" + emp_title + ", emp_salary="
-				+ emp_salary + "]";
+				+ emp_salary + ", login_id=" + login_id + "]";
 	}
 }
