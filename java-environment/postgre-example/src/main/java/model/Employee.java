@@ -19,6 +19,15 @@ public class Employee implements Serializable {
 		this.emp_salary = emp_salary;
 	}
 
+	// Used during creation
+	public Employee(String emp_name, String emp_title, Double emp_salary) {
+		this.emp_id = null;
+		this.emp_name = emp_name;
+		// this.login_id = null;
+		this.emp_title = emp_title;
+		this.emp_salary = emp_salary;
+	}
+
 	public Integer getEmp_id() {
 		return emp_id;
 	}
