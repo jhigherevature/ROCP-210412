@@ -1,0 +1,1 @@
+ALTER TABLE authorbooks.books RENAME COLUMN book_id TO isbn_13;
