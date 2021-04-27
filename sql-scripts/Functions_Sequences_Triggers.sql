@@ -22,7 +22,7 @@ BEFORE INSERT ON examples.employees
 FOR EACH ROW
 EXECUTE PROCEDURE emp_id_func();
 
-INSERT INTO examples.employees VALUES (1, 'Jody', 'Employee', 67000.00);
+INSERT INTO examples.employees VALUES (default, 'Jody', 'Employee', 67000.00);
 
 INSERT INTO examples.employees VALUES (NULL, 'Jody', 'Developer', 97000.00);
 
