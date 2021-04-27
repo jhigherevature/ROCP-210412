@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-// this is modeling records that belong to employee database
+// this is modeling records that belong to donor database
 
 
 public class Donor implements Serializable{
@@ -25,32 +25,43 @@ public class Donor implements Serializable{
 	
 	public Donor() {
 	}
+	public Donor(String title, String first_name, String last_name, String address, String city,
+			 String state, Integer zip, String phone, String email,
+			 String email_alt, String soc_sec, String notes, boolean allow_school_contact, 
+			 boolean donor_status) {
+				this(null, null, title, first_name, last_name,  address,  city, state, zip,  phone,  email,
+						  email_alt,  soc_sec,  notes, allow_school_contact, donor_status);
+			}
+	
 	public Donor(Integer id_donor, String title, String first_name, String last_name, String address, String city,
 	 String state, Integer zip, String phone, String email,
 	 String email_alt, String soc_sec, String notes, boolean allow_school_contact, 
 	 boolean donor_status) {
-		this.id_donor=id_donor;
-		this.title=title;
-		this.first_name=first_name;
-		this.last_name=last_name;
-		this.address=address;
-		this.city=city;
-		this.state=state;
-		this.zip=zip;
-		this.phone=phone;
-		this.email=email;
-		this.email_alt=email_alt;
-		this.soc_sec=soc_sec;
-		this.notes=notes;
-		this.allow_school_contact=allow_school_contact;
-		this.donor_status=donor_status;	
+		this(id_donor, null, title, first_name, last_name,  address,  city, state, zip,  phone,  email,
+				  email_alt,  soc_sec,  notes, allow_school_contact, donor_status);
 	}
+		
+//		this.id_donor=id_donor;
+//		this.title=title;
+//		this.first_name=first_name;
+//		this.last_name=last_name;
+//		this.address=address;
+//		this.city=city;
+//		this.state=state;
+//		this.zip=zip;
+//		this.phone=phone;
+//		this.email=email;
+//		this.email_alt=email_alt;
+//		this.soc_sec=soc_sec;
+//		this.notes=notes;
+//		this.allow_school_contact=allow_school_contact;
+//		this.donor_status=donor_status;	
+	
 	public Donor(Integer id_donor, Integer id_account, String title, String first_name, String last_name, String address, String city,
 			 String state, Integer zip, String phone, String email,
-			 String email_alt, String soc_sec, String notes, boolean allow_school_contact, 
-			 boolean donor_status) {
+			 String email_alt, String soc_sec, String notes, boolean allow_school_contact, boolean donor_status) {
+				this.id_account=null;
 				this.id_donor=id_donor;
-				this.id_account=id_account;
 				this.title=title;
 				this.first_name=first_name;
 				this.last_name=last_name;
@@ -67,11 +78,6 @@ public class Donor implements Serializable{
 				this.donor_status=donor_status;	
 			}
 
-	public Donor(String string, String string2, String string3, String string4, String string5, String string6,
-			String string7, String string8, int i, String string9, String string10, String string11, String string12,
-			boolean b, boolean c) {
-		// TODO Auto-generated constructor stub
-	}
 	public Integer getId_donor() {
 		return id_donor;
 	}
