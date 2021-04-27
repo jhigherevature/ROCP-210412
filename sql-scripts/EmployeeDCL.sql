@@ -17,6 +17,14 @@ GRANT INSERT ON examples.employees TO customers;
 
 -- OR we can GRANT many AT the same time
 GRANT SELECT, UPDATE, DELETE ON examples.employees TO customers;
+
+GRANT USAGE ON SCHEMA examples TO customers;
+
+GRANT USAGE ON ALL SEQUENCES IN SCHEMA examples TO customers;
+GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA examples TO customers;
+
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA examples TO customers;
+
 /*
  * We can specify all tables/schemas/sequences, etc... on an entity
  * using the ALL keyword
