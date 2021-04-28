@@ -13,6 +13,14 @@ GRANT SELECT, INSERT, UPDATE, DELETE
 	 ON ALL TABLES IN SCHEMA project 
     TO user_admin WITH GRANT OPTION;
    
+CREATE USER test_admin WITH PASSWORD 'pw';
+GRANT user_admin TO test_admin; 
+GRANT all ON SCHEMA project TO test_admin;
+
+GRANT USAGE ON SCHEMA project TO test_admin;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA project TO test_admin;
+
+   
 --   sample to pull from:
 -- GRANT { { SELECT | INSERT | UPDATE | REFERENCES } ( column_name [, ...] )
 --    [, ...] | ALL [ PRIVILEGES ] ( column_name [, ...] ) }
