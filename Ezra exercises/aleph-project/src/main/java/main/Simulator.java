@@ -6,8 +6,10 @@ import dataaccessobject.DonorDAO;
 import dataaccessobject.DonorDAOImpl;
 import dataaccessobject.EmployeeDAO;
 import dataaccessobject.EmployeeDAOImpl;
+import dataaccessobject.UserpassDAOImpl;
 import model.Donor;
 import model.Employee;
+import services.AuthenticationService;
 
 public class Simulator {
 	
@@ -24,12 +26,19 @@ public class Simulator {
 //System.out.println(token);
 //System.out.println(un);
 //		;
-		
-		
+//		UserpassDAOImpl up = new UserpassDAOImpl();
+//		System.out.println(up.selectLoginByUserAndPass("John", "b"));
+//		
+//		String[] str = new String[] {"John", "b"};
+//		Donor donor = AuthenticationService.authenticateDonor(str);
+//		System.out.println(donor);
 		
 //		call startMenu
-		StartMenuV2 sm = new StartMenuV2();
-		sm.startMenuV2();
+		StartMenu sm = new StartMenu();
+		sm.startMenu();
+		
+//		StartMenuV2 sm = new StartMenuV2();
+//		sm.startMenuV2();
 //		
 //		EmployeeDAO eDao = new EmployeeDAOImpl();
 //		List<Employee> testList = eDao.selectAllEmployees();

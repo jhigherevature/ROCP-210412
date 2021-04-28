@@ -33,7 +33,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			ps.setString(1, emp.getFirst_name());
 			ps.setString(2, emp.getLast_name());
 			ps.setString(3, emp.getEmp_title());
-			ps.setString(4, emp.getEmp_pw());
+			ps.setInt(4, emp.getId_userpass());
 			
 			ps.executeUpdate();
 			
@@ -52,30 +52,21 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		Employee emp = null;
 		
 		try (Connection conn = ConnectUtil.getConnection()) {
-			/*
-			 * The '?' in the String query below is the parameter
-			 * marker for our PreparedStatement. We can set the
-			 * value used in the parameter markers by referencing
-			 * the prepared statement and setting the value of those
-			 * markers using the marker's position (the indexing here
-			 * also starts at 1.
-			 */
+
 			String query = "SELECT * FROM project.employee WHERE id_emp=?";
 			ps = conn.prepareStatement(query);
 			
 			ps.setInt(1, id);
 			
 			rs = ps.executeQuery();
-			
-//			Michel	Somerset	employee	msomerset	stuff
-			
+						
 			while (rs.next()) {
 				emp = new Employee(
 						rs.getInt("id_emp"),
 						rs.getString("first_name"),
 						rs.getString("last_name"),
 						rs.getString("emp_title"),
-						rs.getString("emp_pw")
+						rs.getInt("id_userpass")
 						);
 			}
 			
@@ -116,11 +107,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 				 */
 				emp.setEmp_id(rs.getInt("id_emp"));
 				emp.setFirst_name(rs.getString("first_name"));
-
 				emp.setLast_name(rs.getString("last_name"));
 				emp.setEmp_title(rs.getString("emp_title"));
-//				emp.setEmp_pw(rs.getString("emp_pw"));
-				emp.setid_userpass(rs.getString("id_userpass"));
+				emp.setId_userpass(rs.getInt("id_userpass"));
 				
 				// Add the new employee Object to our list
 				elist.add(emp);
@@ -140,8 +129,48 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override
 	public boolean deleteEmployee(Employee emp) {
-		// TODO Auto-generated method stub
-		return false;
+		PreparedStatement ps = null;
+		try (Connection conn = ConnectUtil.getConnection()) {
+		
+			String query = "DELETE FROM project.employee WHERE emp_id=?";
+			ps = conn.prepareStatement(query);
+				
+			ps.setInt(1, emp.getEmp_id());
+			ps.executeUpdate();			
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+			return true;
 	}
-
+	@Override
+	public Employee selectEmployeeByLoginId(Integer id) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Employee emp = null;
+		
+		try (Connection conn = ConnectUtil.getConnection()) {
+		
+			String query = "SELECT * FROM project.employee WHERE id_userpass=?";
+			ps = conn.prepareStatement(query);
+			
+			ps.setInt(1, id);
+			
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				emp = new Employee(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getInt(5)
+						);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return emp;
+	}
 }

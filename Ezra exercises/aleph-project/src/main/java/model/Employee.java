@@ -8,22 +8,20 @@ public class Employee implements Serializable {
 		private String first_name;
 		private String last_name;
 		private String emp_title;
-//		private String emp_pw;
-		private String id_userpass;
+		private Integer id_userpass;
 
 		public Employee() {
 		}
 
-		public Employee(Integer emp_id, String first_name, String last_name, String emp_title, String id_userpass) {
+		public Employee(Integer emp_id, String first_name, String last_name, String emp_title, Integer id_userpass) {
 			this.emp_id = emp_id;
 			this.first_name = first_name;
 			this.last_name = last_name;
 			this.emp_title = emp_title;
 			this.id_userpass = id_userpass;
-//			this.emp_pw = emp_pw;
 		}
 		
-		public Employee(String first_name, String last_name, String emp_title, String id_userpass) {
+		public Employee(String first_name, String last_name, String emp_title, Integer id_userpass) {
 			this(null, first_name, last_name, emp_title, id_userpass);
 		}
 		
@@ -93,7 +91,7 @@ public class Employee implements Serializable {
 //		public String getEmp_pw() {
 //			return emp_pw;
 //		}
-		public String getid_userpass() {
+		public Integer getId_userpass() {
 			return id_userpass;
 		}
 		/**
@@ -102,7 +100,7 @@ public class Employee implements Serializable {
 //		public void setEmp_pw(String emp_pw) {
 //			this.emp_pw = emp_pw;
 //		}
-		public void setid_userpass(String id_userpass) {
+		public void setId_userpass(Integer id_userpass) {
 			this.id_userpass = id_userpass;
 		}
 
@@ -158,7 +156,7 @@ public class Employee implements Serializable {
 		@Override
 		public String toString() {
 			return "Employee [emp_id=" + emp_id + ", first_name=" + first_name + ", last_name=" + last_name
-					+ ", emp_title=" + emp_title + ", emp_pw=" + id_userpass + "]";
+					+ ", emp_title=" + emp_title + ", id_userpass=" + id_userpass + "]";
 		}
 
 

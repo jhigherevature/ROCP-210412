@@ -12,8 +12,9 @@ import connectutil.ConnectUtil;
 import model.Account;
 import model.Employee;
 
-public class AccountDAOImpl {
+public class AccountDAOImpl implements AccountDAO{
 	
+	@Override
 	public boolean insertIntoAccount(Account account) {
 		PreparedStatement ps = null;
 		try (Connection conn = ConnectUtil.getConnection()) {
@@ -29,7 +30,7 @@ public class AccountDAOImpl {
 		}
 		return true;
 	}
-	
+	@Override
 	public Account selectAccount(Integer id) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -54,7 +55,7 @@ public class AccountDAOImpl {
 		}
 		return account;
 	}
-	
+	@Override
 	public List<Account> selectAllAccount() {
 		Statement stmt = null;
 		ResultSet rs = null;

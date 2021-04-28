@@ -22,23 +22,24 @@ public class Donor implements Serializable{
 	private String notes;
 	private boolean allow_school_contact;
 	private boolean donor_status;
+	private Integer id_userpass;
 	
 	public Donor() {
 	}
 	public Donor(String title, String first_name, String last_name, String address, String city,
 			 String state, Integer zip, String phone, String email,
 			 String email_alt, String soc_sec, String notes, boolean allow_school_contact, 
-			 boolean donor_status) {
+			 boolean donor_status, Integer id_userpass) {
 				this(null, null, title, first_name, last_name,  address,  city, state, zip,  phone,  email,
-						  email_alt,  soc_sec,  notes, allow_school_contact, donor_status);
+						  email_alt,  soc_sec,  notes, allow_school_contact, donor_status, id_userpass);
 			}
 	
 	public Donor(Integer id_donor, String title, String first_name, String last_name, String address, String city,
 	 String state, Integer zip, String phone, String email,
 	 String email_alt, String soc_sec, String notes, boolean allow_school_contact, 
-	 boolean donor_status) {
+	 boolean donor_status, Integer id_userpass) {
 		this(id_donor, null, title, first_name, last_name,  address,  city, state, zip,  phone,  email,
-				  email_alt,  soc_sec,  notes, allow_school_contact, donor_status);
+				  email_alt,  soc_sec,  notes, allow_school_contact, donor_status, id_userpass);
 	}
 		
 //		this.id_donor=id_donor;
@@ -59,7 +60,7 @@ public class Donor implements Serializable{
 	
 	public Donor(Integer id_donor, Integer id_account, String title, String first_name, String last_name, String address, String city,
 			 String state, Integer zip, String phone, String email,
-			 String email_alt, String soc_sec, String notes, boolean allow_school_contact, boolean donor_status) {
+			 String email_alt, String soc_sec, String notes, boolean allow_school_contact, boolean donor_status, Integer id_userpass) {
 				this.id_account=null;
 				this.id_donor=id_donor;
 				this.title=title;
@@ -75,7 +76,8 @@ public class Donor implements Serializable{
 				this.soc_sec=soc_sec;
 				this.notes=notes;
 				this.allow_school_contact=allow_school_contact;
-				this.donor_status=donor_status;	
+				this.donor_status=donor_status;
+				this.id_userpass = id_userpass;
 			}
 
 	public Integer getId_donor() {
@@ -175,6 +177,14 @@ public class Donor implements Serializable{
 	public void setDonor_status(boolean donor_status) {
 		this.donor_status = donor_status;
 	}
+
+	public Integer getId_userpass() {
+		return id_userpass;
+	}
+	
+	public void setId_userpass(Integer id_userpass) {
+		this.id_userpass = id_userpass;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -186,7 +196,9 @@ public class Donor implements Serializable{
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((email_alt == null) ? 0 : email_alt.hashCode());
 		result = prime * result + ((first_name == null) ? 0 : first_name.hashCode());
+		result = prime * result + ((id_account == null) ? 0 : id_account.hashCode());
 		result = prime * result + ((id_donor == null) ? 0 : id_donor.hashCode());
+		result = prime * result + ((id_userpass == null) ? 0 : id_userpass.hashCode());
 		result = prime * result + ((last_name == null) ? 0 : last_name.hashCode());
 		result = prime * result + ((notes == null) ? 0 : notes.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
@@ -234,10 +246,20 @@ public class Donor implements Serializable{
 				return false;
 		} else if (!first_name.equals(other.first_name))
 			return false;
+		if (id_account == null) {
+			if (other.id_account != null)
+				return false;
+		} else if (!id_account.equals(other.id_account))
+			return false;
 		if (id_donor == null) {
 			if (other.id_donor != null)
 				return false;
 		} else if (!id_donor.equals(other.id_donor))
+			return false;
+		if (id_userpass == null) {
+			if (other.id_userpass != null)
+				return false;
+		} else if (!id_userpass.equals(other.id_userpass))
 			return false;
 		if (last_name == null) {
 			if (other.last_name != null)
@@ -278,11 +300,11 @@ public class Donor implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Donor [id_donor=" + id_donor + ", title=" + title + ", first_name=" + first_name + ", last_name="
-				+ last_name + ", address=" + address + ", city=" + city + ", state=" + state + ", zip=" + zip
-				+ ", phone=" + phone + ", email=" + email + ", email_alt=" + email_alt + ", soc_sec=" + soc_sec
-				+ ", notes=" + notes + ", allow_school_contact=" + allow_school_contact + ", donor_status="
-				+ donor_status + "]";
+		return "Donor [id_donor=" + id_donor + ", id_account=" + id_account + ", title=" + title + ", first_name="
+				+ first_name + ", last_name=" + last_name + ", address=" + address + ", city=" + city + ", state="
+				+ state + ", zip=" + zip + ", phone=" + phone + ", email=" + email + ", email_alt=" + email_alt
+				+ ", soc_sec=" + soc_sec + ", notes=" + notes + ", allow_school_contact=" + allow_school_contact
+				+ ", donor_status=" + donor_status + ", id_userpass=" + id_userpass + "]";
 	}
 	
 	

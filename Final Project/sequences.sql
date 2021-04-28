@@ -2,6 +2,7 @@
 
 -- need to change serial to integer then add:     DEFAULT nextval('id_scholarship')   to end of line
 DROP SEQUENCE id_account_seq;
+
 CREATE SEQUENCE id_account_seq START WITH 90001 INCREMENT BY 1;
 CREATE SEQUENCE id_userpass_seq START WITH 100 INCREMENT BY 1;
 --DROP SEQUENCE id_donor_seq;
@@ -9,24 +10,20 @@ CREATE SEQUENCE id_donor_seq START WITH 70001 INCREMENT BY 1;
 CREATE SEQUENCE id_parent_seq START WITH 5000 INCREMENT BY 1;
 CREATE SEQUENCE id_emp_seq START WITH 10 INCREMENT BY 1;
 CREATE SEQUENCE id_school_contact_seq START WITH 100 INCREMENT BY 1;
-
-
 CREATE SEQUENCE id_income_seq START WITH 7777 INCREMENT BY 1;
-
 CREATE SEQUENCE id_pledge_seq START WITH 55555 INCREMENT BY 1;
 CREATE SEQUENCE id_donation_seq START WITH 33333 INCREMENT BY 1;
-
 CREATE SEQUENCE id_scholarship_seq START WITH 22222 INCREMENT BY 1;
-
 CREATE SEQUENCE id_school_seq START WITH 10 INCREMENT BY 1;
 --DROP SEQUENCE id_school_seq;
-
-
 CREATE SEQUENCE id_student_seq START WITH 1111 INCREMENT BY 1;
+
+INSERT INTO project.donation (id_donation, )
+
+--DROP TRIGGER IF EXISTS emp_id_trig ON examples.employees;
 
 DROP TRIGGER id_userpass_trig;
 DROP FUNCTION id_account_trig;
-
 DROP FUNCTION id_userpass_func();
 DROP FUNCTION id_account_func();
 DROP FUNCTION id_emp_func();

@@ -10,4 +10,6 @@ public interface DonorDAO {
 	public List<Donor> selectAllDonors();
 	public boolean updateDonor(Donor donor);
 	public boolean deleteDonor(Donor donor);
+	public Donor selectDonorByLoginId(Integer id);
+
 }

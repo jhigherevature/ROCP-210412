@@ -10,6 +10,7 @@ import java.util.List;
 
 import connectutil.ConnectUtil;
 import model.Donor;
+import model.Employee;
 
 public class DonorDAOImpl implements DonorDAO {
 
@@ -19,7 +20,7 @@ public class DonorDAOImpl implements DonorDAO {
 
 		try (Connection conn = ConnectUtil.getConnection()) {
 			
-			String query = "INSERT INTO project.donor VALUES (default, null,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String query = "INSERT INTO project.donor VALUES (default, null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(query);
 													//id_donor int
 													//id_account integer													
@@ -37,6 +38,7 @@ public class DonorDAOImpl implements DonorDAO {
 			ps.setString(12, donor.getNotes());	//notes	
 			ps.setBoolean(13, donor.isAllow_school_contact());	//allow_school_contact
 			ps.setBoolean(14, donor.isDonor_status());	//donor_status boolean
+			ps.setInt(15, donor.getId_userpass());
 			
 			ps.executeUpdate();		
 		} catch (SQLException e) {
@@ -78,7 +80,8 @@ public class DonorDAOImpl implements DonorDAO {
 						rs.getString(13),
 						rs.getString(14),						
 						rs.getBoolean(15),
-						rs.getBoolean(16)
+						rs.getBoolean(16),
+						rs.getInt(17)
 						);
 			}
 			
@@ -120,6 +123,8 @@ public class DonorDAOImpl implements DonorDAO {
 				d.setNotes(rs.getString(14));						
 				d.setAllow_school_contact(rs.getBoolean(15));
 				d.setDonor_status(rs.getBoolean(16));
+				d.setId_userpass(rs.getInt(17));
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -135,9 +140,45 @@ public class DonorDAOImpl implements DonorDAO {
 
 	@Override
 	public boolean deleteDonor(Donor donor) {
-		// TODO Auto-generated method stub
+		System.out.println("Donors may not be deleted...instead set donor status to inactive");
 		return false;
 	}
-	
-
+	@Override
+	public Donor selectDonorByLoginId(Integer id) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Donor donor = null;
+		
+		try (Connection conn = ConnectUtil.getConnection()) {
+			String query = "SELECT * FROM project.donor WHERE id_userpass=?";
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				donor = new Donor(
+						rs.getInt(1),
+						rs.getInt(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getString(6),
+						rs.getString(7),
+						rs.getString(8),
+						rs.getInt(9),
+						rs.getString(10),
+						rs.getString(11),
+						rs.getString(12),
+						rs.getString(13),
+						rs.getString(14),						
+						rs.getBoolean(15),
+						rs.getBoolean(16),
+						rs.getInt(17)
+						);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return donor;
+	}
 }

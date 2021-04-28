@@ -25,5 +25,6 @@ public interface EmployeeDAO {
 	public List<Employee> selectAllEmployees();
 	public boolean updateEmployee(Employee emp);
 	public boolean deleteEmployee(Employee emp);
-	
+	public Employee selectEmployeeByLoginId(Integer id);
+
 }

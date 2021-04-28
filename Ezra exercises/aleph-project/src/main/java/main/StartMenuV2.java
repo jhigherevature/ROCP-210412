@@ -22,7 +22,7 @@ public class StartMenuV2 {
 		try (Connection conn = ConnectUtil.getConnection()) {
 			System.out.println("Connection successful");
 		} catch (SQLException sqlE) {
-			System.out.println("Connection failed");
+			System.out.println("Connection failed - database is temporarily unavailable. Please try again later.");
 			sqlE.printStackTrace();
 		}	
 		

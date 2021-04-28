@@ -9,41 +9,42 @@ public class Pledge implements Serializable{
 	private Integer id_account;
 	private Integer year_pledge = 2021;
 	private Integer pledge_amt;
-	private String id_school;
+	private Integer id_school;
 	
-	long curr_time = System.currentTimeMillis();
-	private Date date_pledged = new Date(curr_time);		// another option:  	 Date.valueOf("2021-04-29"); 		//what datatype is a date
+//	long curr_time = System.currentTimeMillis();
+//	private Date date_pledged = new Date(curr_time);		// another option:  	 Date.valueOf("2021-04-29"); 		//what datatype is a date
+	private Date date_pledged = null;
 	private String status_pledge = "unconfirmed";		// pledged, submitted, pay_now, closed
 	private Date submission_date = null;
 	private Date approval_date = null;
 
-	get.
-	Date date = Date.valueOf("");
+//	get.
+//	Date date = Date.valueOf("");
 		
 	public Pledge() {
 	}
 	public Pledge(Integer id_pledge, Integer id_account, Integer year_pledge,
-	 Integer pledge_amt,String id_school, Date date_pledged, //what datatype is a date
+	 Integer pledge_amt,Integer id_school, Date date_pledged, 
 	 String status_pledge, Date submission_date, Date approval_date) {
 		this.id_account = null;	//id_account; 
 		this.year_pledge = year_pledge;
 		this.pledge_amt = pledge_amt;
 		this.id_school = id_school; 
-		this.date_pledged = date_pledged; //what datatype is a date
+		this.date_pledged = date_pledged; 
 		this.status_pledge = status_pledge; 
 		this.submission_date = submission_date; 
 		this.approval_date = approval_date; 
 	}
 	
 //	public Pledge(Integer id_pledge, Integer id_account, Integer year_pledge, 
-//			Integer pledge_amt,String id_school, Date date_pledged, //what datatype is a date
+//			Integer pledge_amt,Integer id_school, Date date_pledged, 
 //			String status_pledge, Date submission_date, Date approval_date) {
 //		this(id_pledge, id_account,  year_pledge, pledge_amt, id_school,
 //				date_pledged, status_pledge,  submission_date, approval_date);
 //	}
 	
 	public Pledge(Integer id_account, Integer year_pledge, 
-			Integer pledge_amt, String id_school, Date date_pledged) {
+			Integer pledge_amt, Integer id_school, Date date_pledged) {
 		this(null, id_account,  year_pledge, pledge_amt, id_school,
 				date_pledged, "pledged",  null, null);
 	}
@@ -98,13 +99,13 @@ public class Pledge implements Serializable{
 	/**
 	 * @return the id_school
 	 */
-	public String getId_school() {
+	public Integer getId_school() {
 		return id_school;
 	}
 	/**
 	 * @param id_school the id_school to set
 	 */
-	public void setId_school(String id_school) {
+	public void setId_school(Integer id_school) {
 		this.id_school = id_school;
 	}
 	/**
