@@ -11,8 +11,8 @@ import services.AuthenticationService;
 public class Simulator {
 
 	public static void main(String[] args) {
-		Employee emp = AuthenticationService.authenticateEmployee("emplogin", "emppass");
-		System.out.println(emp);
+//		Employee emp = AuthenticationService.authenticateEmployee("emplogin", "emppass");
+//		System.out.println(emp);
 		
 //		EmployeeDAO eDao = new EmployeeDAOImpl();
 //		List<Employee> testList = eDao.selectAllEmployees();
