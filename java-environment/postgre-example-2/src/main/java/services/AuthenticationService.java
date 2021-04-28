@@ -25,16 +25,15 @@ public class AuthenticationService {
 	
 	public static Logger log = LogManager.getLogger(AuthenticationService.class);
 	
-	private static LoginDAO ldao;
-	private static EmployeeDAO edao;
+	private LoginDAO ldao;
+	private EmployeeDAO edao;
 	
-	public static Employee authenticateEmployee(String user_name, String user_pass) {
+	private Login login = null;
+	private Employee emp = null;
+	
+	public Employee authenticateEmployee(String user_name, String user_pass) {
 		log.info("Authentication Service called on: " + user_name + " " + user_pass);
-		ldao = new LoginDAOImpl();
-		edao = new EmployeeDAOImpl();
-		Login login = null; 
-		Employee emp = null;
-		
+
 		login = ldao.selectLoginByUserAndPass(user_name, user_pass);
 		
 		if (login != null)
