@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.eric</groupId>
+  <artifactId>Eric_Bank_App</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Eric_Bank_App</name>
+  <description>My bank app final project for Revature</description>
+  <properties>
+  		<maven.compiler.source>1.8</maven.compiler.source>
+  		<maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+  <!-- Dependency refers to code that we need to incorporate
+  		In order for our project to actually run effectively
+   -->
+  <dependencies>
+  		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<dependency>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>42.2.19</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<dependency>
+    		<groupId>org.apache.logging.log4j</groupId>
+    		<artifactId>log4j-core</artifactId>
+    		<version>2.14.1</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+   		    <groupId>junit</groupId>
+   		    <artifactId>junit</artifactId>
+  		    <version>4.13.2</version>
+  		    <scope>test</scope>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+		<dependency>
+    		<groupId>org.mockito</groupId>
+   			 <artifactId>mockito-core</artifactId>
+  			 <version>3.9.0</version>
+   			 <scope>test</scope>
+		</dependency>
+		
+  </dependencies>
+</project>
