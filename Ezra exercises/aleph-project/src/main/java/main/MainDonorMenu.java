@@ -2,7 +2,7 @@ package main;
 
 public class MainDonorMenu {
 
-	Choose your selection
-	options: 
+//	Choose your selection
+//	options: 
 		
 }

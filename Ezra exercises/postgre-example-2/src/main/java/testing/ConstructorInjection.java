@@ -8,6 +8,6 @@ public class ConstructorInjection {
 	}
 	
 	public boolean performAction(int value) {
-		
+		return injection.checkValue(value);
 	}
 }

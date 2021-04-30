@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import connectutil.ConnectUtil;
-import model.Employee;
 
 public class CheckLogin {
+	@SuppressWarnings("resource")
 	public String[] checkLogin(String usertype) {
 		
 		System.out.println("Please type in your username");

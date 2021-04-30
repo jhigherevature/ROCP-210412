@@ -93,7 +93,8 @@ public class Donor implements Serializable{
 	public void setId_account(Integer id_account) {
 		this.id_account = id_account;
 	}
-	public String getTitle() {
+	public String getTitle()
+			{
 		return title;
 	}
 	public void setTitle(String title) {

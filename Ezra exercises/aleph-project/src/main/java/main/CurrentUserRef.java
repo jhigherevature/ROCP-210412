@@ -1,5 +1,6 @@
 package main;
 
+import model.Account;
 import model.Donor;
 import model.Employee;
 
@@ -10,6 +11,7 @@ public class CurrentUserRef {
 	
 	private Employee emp = null;
 	private Donor donor = null;
+	private Account acc = null;
 	
 
 	// reference to an instance of the singleton object
@@ -51,6 +53,36 @@ public class CurrentUserRef {
 	}
 
 	
+	public Account getAcc() {
+		return acc;
+	}
+
+
+	public void setAcc(Account acc) {
+		this.acc = acc;
+	}
+
+
+	public Employee getEmp() {
+		return emp;
+	}
+
+
+	public void setEmp(Employee emp) {
+		this.emp = emp;
+	}
+
+
+	public Donor getDonor() {
+		return donor;
+	}
+
+
+	public void setDonor(Donor donor) {
+		CurrentUserRef.getCurrentUserRef().donor = donor;
+	}
+
+
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		throw new CloneNotSupportedException();

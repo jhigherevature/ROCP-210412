@@ -1,5 +1,8 @@
 package services;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import dataaccessobject.DonorDAO;
 import dataaccessobject.DonorDAOImpl;
 import dataaccessobject.EmployeeDAO;
@@ -12,14 +15,14 @@ import model.Employee;
 import model.Userpass;
 
 public class AuthenticationService {
-//	public static Logger log = LogManager.getLogger(AuthenticationService.class);
+	public static Logger log = LogManager.getLogger(AuthenticationService.class);
 	
 	private static UserpassDAO udao;
 	private static EmployeeDAO edao;
 	private static DonorDAO ddao;
 	
 	public static Employee authenticateEmployee(String[] str) {
-//		log.info("Authentication Service called on: " + str[0] + " " + str[1]);
+		log.info("Authentication Service called on: " + str[0] + " " + str[1]);
 		udao = new UserpassDAOImpl();
 		edao = new EmployeeDAOImpl();
 		Userpass userpass = null; 
@@ -38,6 +41,7 @@ public class AuthenticationService {
 //			log.warn("Login Failed!");
 			System.out.println("Username and password combination were not found. Please try again.");
 			CurrentUserRef.getCurrentUserRef().incLogincounter();
+			log.warn("Employee Login failed due to incorrect username and password");
 		}
 		return emp;
 	}

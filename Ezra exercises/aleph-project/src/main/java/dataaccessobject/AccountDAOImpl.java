@@ -10,7 +10,6 @@ import java.util.List;
 
 import connectutil.ConnectUtil;
 import model.Account;
-import model.Employee;
 
 public class AccountDAOImpl implements AccountDAO{
 	
@@ -21,8 +20,21 @@ public class AccountDAOImpl implements AccountDAO{
 			String query = "INSERT INTO project.employee VALUES (null,?,?)";
 			ps = conn.prepareStatement(query);
 //			ps.setInt(1, account.getId_account());
-			ps.setString(2, account.getStatus());
-			ps.setString(3, account.getTax_filing_status());
+			ps.setString(1, account.getStatus());
+			ps.setString(2, account.getTax_filing_status());
+			ps.executeUpdate();	
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	@Override
+	public boolean insertIntoAccount(int account_id, String tfs) {
+		PreparedStatement ps = null;
+		try (Connection conn = ConnectUtil.getConnection()) {
+			String query = "INSERT INTO project.account VALUES ("+account_id+",'unconfirmed', '"+tfs+"');";
+			ps = conn.prepareStatement(query);
 			ps.executeUpdate();	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -82,5 +94,27 @@ public class AccountDAOImpl implements AccountDAO{
 		
 		return alist;
 	}
-	
+	@Override
+	public int selectAccount() {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Account account = null;
+		
+		try (Connection conn = ConnectUtil.getConnection()) {
+			String query = "SELECT * FROM project.account ORDER BY id_account DESC LIMIT 1";
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				account = new Account(
+						rs.getInt("id_account"),
+						rs.getString("Status"),
+						rs.getString("Tax_filing_status")
+						);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return account.getId_account();
+	}
 }

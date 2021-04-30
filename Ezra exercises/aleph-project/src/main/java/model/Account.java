@@ -21,6 +21,10 @@ public class Account implements Serializable {
 	public Account(Integer id_account, String tax_filing_status) {
 		this(id_account, "unconfirmed", tax_filing_status);
 	}
+	
+	public Account(String tax_filing_status) {
+		this(null, "unconfirmed", tax_filing_status);
+	}
 
 	/**
 	 * @return the id_account

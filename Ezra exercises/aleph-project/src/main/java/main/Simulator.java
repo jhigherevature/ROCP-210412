@@ -36,6 +36,16 @@ public class Simulator {
 //		call startMenu
 		StartMenu sm = new StartMenu();
 		sm.startMenu();
+//		UserpassDAOImpl udao = new UserpassDAOImpl();
+//
+//		System.out.println(udao.selectLoginByUserAndPass("John", "b"));
+//		String username = "username";
+//		String password = "password";
+//		String access_lvl = "donor";
+//		udao.createUserpass(username, password, access_lvl);
+
+//		udao.createUserpass(username, password, "donor");
+		
 		
 //		StartMenuV2 sm = new StartMenuV2();
 //		sm.startMenuV2();

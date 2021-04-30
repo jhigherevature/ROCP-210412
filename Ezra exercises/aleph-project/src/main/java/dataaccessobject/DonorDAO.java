@@ -11,5 +11,5 @@ public interface DonorDAO {
 	public boolean updateDonor(Donor donor);
 	public boolean deleteDonor(Donor donor);
 	public Donor selectDonorByLoginId(Integer id);
-
+	public Donor selectDonorByid_userpass(Integer id);
 }

@@ -3,11 +3,7 @@ package connectutil;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import model.Employee;
 
 public class ConnectUtil {
 	public static Connection getConnection() throws SQLException {
@@ -19,14 +15,15 @@ public class ConnectUtil {
 	
 
 
-	public static void main(String[] args) {
-		try (Connection conn = ConnectUtil.getConnection()) {
-			System.out.println("Connection successful");
-		} catch (SQLException sqlE) {
-			System.out.println("Connection failed");
-			sqlE.printStackTrace();
-		}
-		
-	}
+//	public static void main(String[] args) {
+//		try (Connection conn = ConnectUtil.getConnection()) {
+//			System.out.println("Connection successful");
+//			
+//		} catch (SQLException sqlE) {
+//			System.out.println("Connection failed");
+//			sqlE.printStackTrace();
+//		}
+//		
+//	}
 
 }

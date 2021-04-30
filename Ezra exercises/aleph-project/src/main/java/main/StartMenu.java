@@ -3,19 +3,25 @@ package main;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
-
 import connectutil.ConnectUtil;
+import logging.LoggingSimulator;
 import model.Donor;
 import model.Employee;
 import services.AuthenticationService;
+import services.CreateDonor;
 import services.GetUNandPW;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger; 
 
 public class StartMenu {
-	
+
+	private static Logger log = LogManager.getLogger(LoggingSimulator.class);
+
+	@SuppressWarnings({ "resource", "unused" })
 	public void startMenu() {
 	
 //	Name of Program can be easily changed here
-	String progName = "Donation Fund";
+	String progName = "The Donation Fund";
 //	Login Types can be easily changed here by adding to LoginType array
 	String [] loginType = new String[] {"Donor", "School", "Employee", "New Donor","exit"};
 
@@ -23,6 +29,7 @@ public class StartMenu {
 //	CurrentUserRef CurrentUser = CurrentUserRef.getCurrentUserRef();
 //	set access token 
 //	String access_token = CurrentUser.setAccess_token(null);
+	
 	String access_token = null;
 //  set logincounter variable
 //	int logincounter = 0;
@@ -57,13 +64,12 @@ public class StartMenu {
 //	GetUNandPW up = new GetUNandPW();
 	switch(menuChoiceLogin) {
 case 1:	//donor
-//	Implement login here
-	
-//	Donor donor = AuthenticationService.authenticateDonor(up.getUNandPW());
-	Donor donor = AuthenticationService.authenticateDonor(GetUNandPW.getUNandPW());
+		Donor donor = AuthenticationService.authenticateDonor(GetUNandPW.getUNandPW());
 	if (donor == null) {
 		if (CurrentUserRef.getCurrentUserRef().getLogincounter() >= 3) {
 			System.out.println("Too many failed attempts.");
+			log.warn("user attempted too many failed donor logins");
+
 			menuChoiceLogin = 5;
 	}
 		else {
@@ -75,7 +81,8 @@ case 1:	//donor
 	}
 	break;
 case 2: // school user
-	System.out.println("School logins are not currently available at this time. Please contact admin. If you did not intend to login as a school user then please login again.");
+	System.out.println("School logins are not currently available at this time. Please contact admin. \nIf you did not intend to login as a school user then please login again.");
+	System.exit(0);
 	menuChoiceLogin=5;
 	break;
 case 3: 	//Employee
@@ -85,6 +92,7 @@ case 3: 	//Employee
 	if (emp == null) {
 		if (CurrentUserRef.getCurrentUserRef().getLogincounter() >= 3) {
 			System.out.println("Too many failed attempts.");
+			log.warn("user attempted too many failed employee logins");
 			menuChoiceLogin = 5;
 		}
 		else {
@@ -97,19 +105,39 @@ case 3: 	//Employee
 		break;
 
 case 4:
+	CreateDonor cd = new CreateDonor();
 	System.out.println("Please create your new account now");
-	
-
-
+	cd.createDonor();
+	CurrentUserRef.getCurrentUserRef().setAccess_token("donor");
+	break;
 case 5:
 	menuChoiceLogin=5;
+	System.out.println("Thank you for visiting "+progName+". See you again soon!");
+	System.exit(0);
 	break;
+	}
+	}
+//	Choose context menu by access_token
 	
+	switch(access_token = CurrentUserRef.getCurrentUserRef().getAccess_token()) {
+
+	case "donor":
+		log.info(access_token+" user successfully logged into donor menu");
+		System.out.println("donor menu");
+		break;
+			
+	case "emp":
+		log.info(access_token+" user successfully logged into employee menu");
+		System.out.println("employee menu");
+		break;
+	case "admin":
+		log.info(access_token+" user successfully logged into admin menu");
+		System.out.println("admin menu");
+		break;	
+	}
 
 	}
-	}
-	
-	}}
+}
 	
 
 		
