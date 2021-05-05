@@ -9,6 +9,10 @@ public class Employee implements Serializable {
 	private Double emp_salary;
 	private Integer login_id;
 
+	public String getEmpText() {
+		return "This is the emp text";
+	}
+	
 	public Employee() {
 
 	}
