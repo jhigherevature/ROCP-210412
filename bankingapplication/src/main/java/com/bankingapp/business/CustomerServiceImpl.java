@@ -6,7 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.bankingapp.dataaccess.CustomerDAO;
-import com.bankingapp.dataaccess.CustomerDAOImpl;
 import com.bankingapp.dataaccess.DAOException;
 import com.bankingapp.entities.Account;
 import com.bankingapp.entities.Customer;
@@ -30,7 +29,6 @@ public class CustomerServiceImpl implements CustomerService {
 			logger.debug("Customer find successfully");
 			
 		} catch (DAOException e) {
-			e.printStackTrace();
 			logger.error("failed to create a new customer");
 			throw new BusinessException("failed to create new customer", e);
 		}

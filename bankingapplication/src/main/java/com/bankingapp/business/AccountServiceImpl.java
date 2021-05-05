@@ -50,19 +50,19 @@ public class AccountServiceImpl implements AccountService {
 		account.setAccountNumber("3000928" + newAccountId);
 
 		return account;
-		
+
 	}
 
 	@Override
 	public List<AccountType> getAllAccountTypes() throws BusinessException {
 		List<AccountType> accountTypes = null;
-		
+
 		try {
 			accountTypes = accountDAO.getAllAccountTypes();
 			logger.debug("All account types retrieved successfully");
 		} catch (DAOException e) {
 			e.printStackTrace();
-			logger.error("Failed to retrieve all account types",e);
+			logger.error("Failed to retrieve all account types", e);
 			throw new BusinessException("Failed to retrieve all account types", e);
 		}
 		return accountTypes;
@@ -74,9 +74,9 @@ public class AccountServiceImpl implements AccountService {
 		try {
 			TransactionType transactionType = accountDAO.getTransactionByName(transactionTypeName);
 			List<AccountTransaction> accountTransactions = new ArrayList<AccountTransaction>();
-			
+
 			logger.debug("Transactions recorded successfully");
-			
+
 			for (Customer customer : customers) {
 				AccountTransaction transaction = new AccountTransaction();
 				transaction.setAmount(amount);
@@ -85,11 +85,13 @@ public class AccountServiceImpl implements AccountService {
 				transaction.setTargetAccount(targetAccount);
 				transaction.setTransactionType(transactionType);
 				accountTransactions.add(transaction);
+				logger.info(customer.getCustomerName() + " requested a " + transactionType.getTransactionTypeName()
+						+ "on account " + targetAccount.getAccountNumber());
 			}
 			accountDAO.recordTransactions(accountTransactions);
 		} catch (DAOException e) {
 			e.printStackTrace();
-			logger.error("failed to record transactions",e);
+			logger.error("failed to record transactions", e);
 			throw new BusinessException("Failed to record transactions", e);
 		}
 	}
@@ -102,7 +104,7 @@ public class AccountServiceImpl implements AccountService {
 			logger.debug("Transactons successfully received");
 		} catch (DAOException e) {
 			e.printStackTrace();
-			logger.error("failed to get transaction type",e);
+			logger.error("failed to get transaction type", e);
 			throw new BusinessException("Failed to get transaction type", e);
 		}
 		return transactionType;
@@ -115,7 +117,7 @@ public class AccountServiceImpl implements AccountService {
 			accountList = accountDAO.findAccountsOfCustomer(customer);
 			logger.debug("accounts of customer find successfully");
 		} catch (DAOException e) {
-			logger.error("failed to find accounts of customer",e);
+			logger.error("failed to find accounts of customer", e);
 			throw new BusinessException("Failed to find accounts of customer", e);
 		}
 		return accountList;
@@ -142,14 +144,16 @@ public class AccountServiceImpl implements AccountService {
 
 		double newBalance = account.getAccountBalance() - amount;
 
-		account.setAccountBalance(newBalance);
-		try {
-			accountDAO.updateAccount(account);
-			logger.debug("withdraw successful");
-			recordTransactions(null, account, amount, "Deposit", customer);
-		} catch (DAOException e) {
-			logger.error("failed to withdraw money",e);
-			throw new BusinessException("Failed to withdraw money", e);
+		if (newBalance >= 0) {
+			account.setAccountBalance(newBalance);
+			try {
+				accountDAO.updateAccount(account);
+				logger.debug("withdraw successful");
+				recordTransactions(null, account, amount, "Deposit", customer);
+			} catch (DAOException e) {
+				logger.error("failed to withdraw money", e);
+				throw new BusinessException("Failed to withdraw money", e);
+			}
 		}
 	}
 
@@ -171,7 +175,7 @@ public class AccountServiceImpl implements AccountService {
 				recordTransactions(sourceAccount, targetAccount, amount, "Transfer", customer);
 			}
 		} catch (DAOException e) {
-			logger.error("failed to complete transfer",e);
+			logger.error("failed to complete transfer", e);
 			throw new BusinessException("Failed to complete transfer", e);
 		}
 	}
@@ -182,7 +186,7 @@ public class AccountServiceImpl implements AccountService {
 			accountDAO.updateAccount(account);
 			logger.debug("Account successfully updated");
 		} catch (DAOException e) {
-			logger.error("failed to update account",e);
+			logger.error("failed to update account", e);
 			throw new BusinessException("Failed to update account", e);
 		}
 	}
@@ -194,7 +198,7 @@ public class AccountServiceImpl implements AccountService {
 			transactions = accountDAO.getAllTransactionByCustomer(customer);
 			logger.debug("tansactons made by customer reveiced");
 		} catch (DAOException e) {
-			logger.error("failed to get transactions by customer",e);
+			logger.error("failed to get transactions by customer", e);
 			throw new BusinessException("Failed to get transactions by customer", e);
 		}
 		return transactions;
@@ -208,12 +212,12 @@ public class AccountServiceImpl implements AccountService {
 			logger.debug("Unapproved accounts find successfully");
 		} catch (DAOException e) {
 			e.printStackTrace();
-			logger.error("failed to find unapproved accounts",e);
+			logger.error("failed to find unapproved accounts", e);
 			throw new BusinessException("Failed to find unapproved accounts", e);
 		}
 		return accountList;
 	}
-	
+
 	@Override
 	public List<Account> findAllAccounts() throws BusinessException {
 		List<Account> accountList = null;
