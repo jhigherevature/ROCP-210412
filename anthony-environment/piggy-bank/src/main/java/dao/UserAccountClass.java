@@ -83,7 +83,7 @@ public class UserAccountClass implements UserAccountInterface {
         PreparedStatement ps = null;
         Boolean result = null;
         try (Connection conn = Utility.connect()) {
-            String query = "UPDATE piggybank.useraccounts SET email=?, passHash=?, firstName=?, lastName=?, status=? WHERE uid=?";
+            String query = "UPDATE piggybank.useraccounts SET \"email\"=?, \"passHash\"=?, \"firstName\"=?, \"lastName\"=?, \"status\"=? WHERE \"uid\"=?";
             ps = conn.prepareStatement(query);
 
             ps.setString(1, user.getEmail());

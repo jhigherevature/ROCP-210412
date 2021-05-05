@@ -3,7 +3,7 @@ BEGIN;
 CREATE SCHEMA piggybank;
 
 CREATE TABLE piggybank.userAccounts (
-	"uid" int UNIQUE PRIMARY KEY NOT NULL,
+	"uid" serial UNIQUE PRIMARY KEY NOT NULL,
 	"email" varchar(200) UNIQUE,
 	"passHash" varchar(200),
 	"firstName" varchar(50),
@@ -16,7 +16,7 @@ CREATE TABLE piggybank.userAccounts (
 );
 
 CREATE TABLE piggybank.bankAccounts (
-	"aid" int UNIQUE PRIMARY KEY NOT NULL,
+	"aid" serial UNIQUE PRIMARY KEY NOT NULL,
 	"type" varchar(50) CHECK ("type" = 'debit' OR "type" = 'credit'),
 	"balance" money CHECK (("type" = 'debit' AND "balance" >= 0.00::money) OR ("type" = 'credit'))
 );
@@ -29,7 +29,7 @@ CREATE TABLE piggybank.joinAccounts (
 );
 
 CREATE TABLE piggybank.transactions (
-	"id" int UNIQUE PRIMARY KEY NOT NULL,
+	"id" serial UNIQUE PRIMARY KEY NOT NULL,
 	"said" int NOT NULL,
 	"suid" int NOT NULL,
 	"transaction" money NOT NULL,
