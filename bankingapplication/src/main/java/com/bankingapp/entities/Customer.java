@@ -3,7 +3,7 @@ package com.bankingapp.entities;
 import java.util.List;
 
 public class Customer extends User {
-
+    private int customerId;
 	private String customerName;
 	private String email;
 	private String address;
@@ -40,4 +40,13 @@ public class Customer extends User {
 	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
 	}
+	
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
 }

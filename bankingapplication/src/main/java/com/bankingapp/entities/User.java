@@ -1,6 +1,6 @@
 package com.bankingapp.entities;
 
-public class User {
+public abstract class User {
 
 	private String userName;
 	private String password;

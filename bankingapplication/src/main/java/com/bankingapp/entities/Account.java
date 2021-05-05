@@ -2,9 +2,19 @@ package com.bankingapp.entities;
 
 public class Account {
 
+	private int accountId;
 	private String accountNumber;
-	private String accountBalance;
+	private double accountBalance;
 	private AccountType accountType;
+    private String status = "pending";
+    
+	public int getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
+	}
 
 	public String getAccountNumber() {
 		return accountNumber;
@@ -14,11 +24,11 @@ public class Account {
 		this.accountNumber = accountNumber;
 	}
 
-	public String getAccountBalance() {
+	public double getAccountBalance() {
 		return accountBalance;
 	}
 
-	public void setAccountBalance(String accountBalance) {
+	public void setAccountBalance(double accountBalance) {
 		this.accountBalance = accountBalance;
 	}
 
@@ -28,5 +38,13 @@ public class Account {
 
 	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }
