@@ -6,15 +6,31 @@ import dataaccessobject.DonorDAO;
 import dataaccessobject.DonorDAOImpl;
 import dataaccessobject.EmployeeDAO;
 import dataaccessobject.EmployeeDAOImpl;
+import dataaccessobject.SchoolDAOImpl;
 import dataaccessobject.UserpassDAOImpl;
 import model.Donor;
 import model.Employee;
+import model.School;
 import services.AuthenticationService;
 
 public class Simulator {
 	
 
 	public static void main(String[] args) {
+
+		
+//		System.out.println("soemhing");
+//		SchoolDAOImpl sdao = new SchoolDAOImpl();
+//		List<School> s = sdao.selectAllSchools();
+//		System.out.println(s.toString());
+//		for (School sc : s) { 
+//			System.out.println("School ID: "+ sc.getId_school() +"\tSchool name: " + sc.getName_school());
+//				}
+//		System.out.println("List - For Loop");
+//		for (List<School> s = alist.iterator(); s.hasNext(); ) {
+//			String name = s.next();
+//			System.out.println(name);
+//		}
 		
 //		testing
 //		String[] loginObject = null;

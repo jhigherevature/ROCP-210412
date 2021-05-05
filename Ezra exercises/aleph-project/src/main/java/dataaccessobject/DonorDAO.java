@@ -10,6 +10,13 @@ public interface DonorDAO {
 	public List<Donor> selectAllDonors();
 	public boolean updateDonor(Donor donor);
 	public boolean deleteDonor(Donor donor);
+	boolean deleteDonor(Integer x);
+
 	public Donor selectDonorByLoginId(Integer id);
 	public Donor selectDonorByid_userpass(Integer id);
+	List<Donor> selectAllActiveDonors();
+	List<Donor> selectAllInactiveDonors();
+	int getDonorInactiveNumber();
+	int getDonorActiveNumber();
+
 }

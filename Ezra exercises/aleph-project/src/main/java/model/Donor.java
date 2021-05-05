@@ -61,7 +61,7 @@ public class Donor implements Serializable{
 	public Donor(Integer id_donor, Integer id_account, String title, String first_name, String last_name, String address, String city,
 			 String state, Integer zip, String phone, String email,
 			 String email_alt, String soc_sec, String notes, boolean allow_school_contact, boolean donor_status, Integer id_userpass) {
-				this.id_account=null;
+				this.id_account=id_account;
 				this.id_donor=id_donor;
 				this.title=title;
 				this.first_name=first_name;

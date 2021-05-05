@@ -3,17 +3,20 @@ package model;
 import java.io.Serializable;
 import java.sql.Date;
 
+import main.CUR;
+
 
 public class Pledge implements Serializable{
 	private Integer id_pledge;
 	private Integer id_account;
-	private Integer year_pledge = 2021;
-	private Integer pledge_amt;
+	private Integer year_pledge;
+	private Double pledge_amt;
 	private Integer id_school;
 	
 //	long curr_time = System.currentTimeMillis();
-//	private Date date_pledged = new Date(curr_time);		// another option:  	 Date.valueOf("2021-04-29"); 		//what datatype is a date
-	private Date date_pledged = null;
+//	private Date date_pledged = new Date(curr_time);		// another option:  	 Date.valueOf("2021-04-29"); 	
+	private Date date_pledged = new Date(System.currentTimeMillis());
+//	private Date date_pledged = null;
 	private String status_pledge = "unconfirmed";		// pledged, submitted, pay_now, closed
 	private Date submission_date = null;
 	private Date approval_date = null;
@@ -24,7 +27,7 @@ public class Pledge implements Serializable{
 	public Pledge() {
 	}
 	public Pledge(Integer id_pledge, Integer id_account, Integer year_pledge,
-	 Integer pledge_amt,Integer id_school, Date date_pledged, 
+	 Double pledge_amt,Integer id_school, Date date_pledged, 
 	 String status_pledge, Date submission_date, Date approval_date) {
 		this.id_account = null;	//id_account; 
 		this.year_pledge = year_pledge;
@@ -37,17 +40,19 @@ public class Pledge implements Serializable{
 	}
 	
 //	public Pledge(Integer id_pledge, Integer id_account, Integer year_pledge, 
-//			Integer pledge_amt,Integer id_school, Date date_pledged, 
+//			Double pledge_amt,Integer id_school, Date date_pledged, 
 //			String status_pledge, Date submission_date, Date approval_date) {
 //		this(id_pledge, id_account,  year_pledge, pledge_amt, id_school,
 //				date_pledged, status_pledge,  submission_date, approval_date);
 //	}
 	
-	public Pledge(Integer id_account, Integer year_pledge, 
-			Integer pledge_amt, Integer id_school, Date date_pledged) {
-		this(null, id_account,  year_pledge, pledge_amt, id_school,
-				date_pledged, "pledged",  null, null);
+	public Pledge(Integer id_account, Integer year_pledge, Double pledge_amt, Integer id_school, Date date_pledged) {
+		this(null, id_account,  year_pledge, pledge_amt, id_school, date_pledged, "pledged",  null, null);
 	}
+	
+//	public Pledge(Integer id_account, Integer year_pledge, Double pledge_amt, Integer id_school) {
+//		this(null, CUR.getCUR().getAcc().getId_account(),  year_pledge, pledge_amt, id_school, date_pledged, "pledged",  null, null);
+//	}
 	/**
 	 * @return the id_pledge
 	 */
@@ -84,16 +89,17 @@ public class Pledge implements Serializable{
 	public void setYear_pledge(Integer year_pledge) {
 		this.year_pledge = year_pledge;
 	}
+
 	/**
 	 * @return the pledge_amt
 	 */
-	public Integer getPledge_amt() {
+	public Double getPledge_amt() {
 		return pledge_amt;
 	}
 	/**
 	 * @param pledge_amt the pledge_amt to set
 	 */
-	public void setPledge_amt(Integer pledge_amt) {
+	public void setPledge_amt(Double pledge_amt) {
 		this.pledge_amt = pledge_amt;
 	}
 	/**
@@ -181,11 +187,17 @@ public class Pledge implements Serializable{
 	}
 	@Override
 	public String toString() {
+		System.out.println("Pledge [id_pledge=" + id_pledge + ", id_account=" + id_account + ", year_pledge=" + year_pledge
+				+ ", pledge_amt=" + pledge_amt + ", id_school=" + id_school + ", date_pledged=" + date_pledged
+				+ ", status_pledge=" + status_pledge + ", submission_date=" + submission_date + ", approval_date="
+				+ approval_date + "]");
 		return "Pledge [id_pledge=" + id_pledge + ", id_account=" + id_account + ", year_pledge=" + year_pledge
 				+ ", pledge_amt=" + pledge_amt + ", id_school=" + id_school + ", date_pledged=" + date_pledged
 				+ ", status_pledge=" + status_pledge + ", submission_date=" + submission_date + ", approval_date="
 				+ approval_date + "]";
 	}
+
+
 	
 	
 }

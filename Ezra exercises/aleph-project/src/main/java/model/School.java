@@ -37,9 +37,10 @@ public class School implements Serializable {
 		return id_school;
 	}
 	/**
-	 * @param id_school the id_school to set
+	 * @param i 
+	 * @param int the id_school to set
 	 */
-	public void setId_school(Integer id_school) {
+	public void setId_school(int id_school) {
 		this.id_school = id_school;
 	}
 	/**
