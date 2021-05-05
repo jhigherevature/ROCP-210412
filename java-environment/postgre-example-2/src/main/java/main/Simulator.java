@@ -1,13 +1,5 @@
 package main;
 
-import java.sql.Date;
-import java.util.List;
-
-import dataaccessobject.EmployeeDAO;
-import dataaccessobject.EmployeeDAOImpl;
-import model.Employee;
-import services.AuthenticationService;
-
 public class Simulator {
 
 	public static void main(String[] args) {
