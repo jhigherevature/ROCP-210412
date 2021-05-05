@@ -82,15 +82,16 @@ public class Users {
         PreparedStatement ps = null;
         Boolean result = null;
         try (Connection conn = Network.connect()) {
-            String query = "UPDATE piggybank.users SET email=?, pass_hash=?, first_name=?, last_name=?, status=? WHERE id=?";
+            String query = "UPDATE piggybank.users SET email=?, pass_hash=?, pass_salt=?, first_name=?, last_name=?, status=? WHERE id=?";
             ps = conn.prepareStatement(query);
 
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getPassHash());
-            ps.setString(3, user.getFirstName());
-            ps.setString(4, user.getLastName());
-            ps.setString(5, user.getStatus());
-            ps.setInt(6, user.getUid());
+            ps.setString(3, user.getPassSalt());
+            ps.setString(4, user.getFirstName());
+            ps.setString(5, user.getLastName());
+            ps.setString(6, user.getStatus());
+            ps.setInt(7, user.getUid());
 
             result = ps.execute();
         } catch (SQLException e) {
