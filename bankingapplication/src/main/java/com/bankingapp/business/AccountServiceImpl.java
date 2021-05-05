@@ -97,20 +97,6 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public TransactionType getTransactionTypeByName(String name) throws BusinessException {
-		TransactionType transactionType = null;
-		try {
-			transactionType = accountDAO.getTransactionByName(name);
-			logger.debug("Transactons successfully received");
-		} catch (DAOException e) {
-			e.printStackTrace();
-			logger.error("failed to get transaction type", e);
-			throw new BusinessException("Failed to get transaction type", e);
-		}
-		return transactionType;
-	}
-
-	@Override
 	public List<Account> findAccountsOfCustomer(Customer customer) throws BusinessException {
 		List<Account> accountList = null;
 		try {

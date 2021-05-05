@@ -12,8 +12,6 @@ public interface AccountService {
 	void recordTransactions(Account sourceAccount, Account targetAccount, double amount,
 			String transactionTypeName, Customer... customers) throws BusinessException;
 	
-	TransactionType getTransactionTypeByName(String name) throws BusinessException;
-	
 	List<Account> findAccountsOfCustomer(Customer customer) throws BusinessException;
 	
 	List<Account> findAllUnapprovedAccounts() throws BusinessException;
