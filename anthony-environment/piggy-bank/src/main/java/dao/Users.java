@@ -7,21 +7,22 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import connection.Utility;
-import model.UserAccount;
 
-public class UserAccountClass implements UserAccountInterface {
-    @Override
-    public boolean insertIntoUsers(UserAccount user) {
+import database.Network;
+import model.User;
+
+public class Users {
+    public boolean insertIntoUsers(User user) {
         PreparedStatement ps = null;
-        try (Connection conn = Utility.connect()) {
-            String query = "INSERT INTO piggybank.useraccounts VALUES (DEFAULT,?,?,?,?,?)";
+        try (Connection conn = Network.connect()) {
+            String query = "INSERT INTO piggybank.users VALUES (DEFAULT,?,?,?,?,?)";
             ps = conn.prepareStatement(query);
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getPassHash());
-            ps.setString(3, user.getFirstName());
-            ps.setString(4, user.getLastName());
-            ps.setString(5, user.getStatus());
+            ps.setString(3, user.getPassSalt());
+            ps.setString(4, user.getFirstName());
+            ps.setString(5, user.getLastName());
+            ps.setString(6, user.getStatus());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -30,20 +31,19 @@ public class UserAccountClass implements UserAccountInterface {
         return true;
     }
 
-    @Override
-    public UserAccount selectUser(String email) {
+    public User selectUser(String email) {
         PreparedStatement ps = null;
         ResultSet rs = null;
-        UserAccount user = null;
+        User user = null;
 
-        try (Connection conn = Utility.connect()) {
-            String query = "SELECT * FROM piggybank.useraccounts WHERE email=?";
+        try (Connection conn = Network.connect()) {
+            String query = "SELECT * FROM piggybank.users WHERE email=?";
             ps = conn.prepareStatement(query);
             ps.setString(1, email);
             rs = ps.executeQuery();
             while (rs.next()) {
-                user = new UserAccount(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getString(6));
+                user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getString(7));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -51,25 +51,25 @@ public class UserAccountClass implements UserAccountInterface {
         return user;
     }
 
-    @Override
-    public List<UserAccount> selectAllUsers() {
+    public List<User> selectAllUsers() {
         Statement st = null;
         ResultSet rs = null;
-        List<UserAccount> users = new ArrayList<UserAccount>();
+        List<User> users = new ArrayList<User>();
 
-        try (Connection conn = Utility.connect()) {
-            String query = "SELECT * FROM piggybank.useraccounts";
+        try (Connection conn = Network.connect()) {
+            String query = "SELECT * FROM piggybank.users";
             st = conn.createStatement();
             rs = st.executeQuery(query);
 
             while (rs.next()) {
-                UserAccount user = new UserAccount();
+                User user = new User();
                 user.setUid(rs.getInt(1));
                 user.setEmail(rs.getString(2));
                 user.setPassHash(rs.getString(3));
-                user.setFirstName(rs.getString(4));
-                user.setLastName(rs.getString(5));
-                user.setStatus(rs.getString(6));
+                user.setPassSalt(rs.getString(4));
+                user.setFirstName(rs.getString(5));
+                user.setLastName(rs.getString(6));
+                user.setStatus(rs.getString(7));
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -78,12 +78,11 @@ public class UserAccountClass implements UserAccountInterface {
         return users;
     }
 
-    @Override
-    public boolean updateUser(UserAccount user) {
+    public boolean updateUser(User user) {
         PreparedStatement ps = null;
         Boolean result = null;
-        try (Connection conn = Utility.connect()) {
-            String query = "UPDATE piggybank.useraccounts SET email=?, passHash=?, firstName=?, lastName=?, status=? WHERE uid=?";
+        try (Connection conn = Network.connect()) {
+            String query = "UPDATE piggybank.users SET email=?, pass_hash=?, first_name=?, last_name=?, status=? WHERE id=?";
             ps = conn.prepareStatement(query);
 
             ps.setString(1, user.getEmail());
@@ -100,12 +99,11 @@ public class UserAccountClass implements UserAccountInterface {
         return result;
     }
 
-    @Override
-    public boolean deleteUser(UserAccount user) {
+    public boolean deleteUser(User user) {
         PreparedStatement ps = null;
         Boolean result = null;
-        try (Connection conn = Utility.connect()) {
-            String query = "DELETE FROM piggybank.useraccounts WHERE uid=?";
+        try (Connection conn = Network.connect()) {
+            String query = "DELETE FROM piggybank.users WHERE id=?";
             ps = conn.prepareStatement(query);
 
             ps.setInt(1, user.getUid());
@@ -117,20 +115,19 @@ public class UserAccountClass implements UserAccountInterface {
         return result;
     }
 
-    @Override
-    public UserAccount selectUserByUid(Integer uid) {
+    public User selectUserByUid(Integer uid) {
         PreparedStatement ps = null;
         ResultSet rs = null;
-        UserAccount user = null;
+        User user = null;
 
-        try (Connection conn = Utility.connect()) {
-            String query = "SELECT * FROM piggybank.useraccounts WHERE uid=?";
+        try (Connection conn = Network.connect()) {
+            String query = "SELECT * FROM piggybank.users WHERE id=?";
             ps = conn.prepareStatement(query);
             ps.setInt(1, uid);
             rs = ps.executeQuery();
             while (rs.next()) {
-                user = new UserAccount(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getString(6));
+                user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getString(7));
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,28 +1,31 @@
 package model;
 
-public class UserAccount {
-    private Integer uid;
+public class User {
+    private Integer id;
     private String email;
     private String passHash;
+    private String passSalt;
     private String firstName;
     private String lastName;
     private String status;
 
-    public UserAccount() {
+    public User() {
     }
 
-    public UserAccount(Integer uid, String email, String passHash, String firstName, String lastName, String status) {
+    public User(Integer id, String email, String passHash, String passSalt, String firstName, String lastName,
+            String status) {
         super();
-        this.uid = uid;
+        this.id = id;
         this.email = email;
         this.passHash = passHash;
+        this.passSalt = passSalt;
         this.firstName = firstName;
         this.lastName = lastName;
         this.status = status;
     }
 
     public Integer getUid() {
-        return uid;
+        return id;
     }
 
     public String getEmail() {
@@ -31,6 +34,10 @@ public class UserAccount {
 
     public String getPassHash() {
         return passHash;
+    }
+
+    public String getPassSalt() {
+        return passSalt;
     }
 
     public String getFirstName() {
@@ -45,8 +52,8 @@ public class UserAccount {
         return status;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setUid(Integer id) {
+        this.id = id;
     }
 
     public void setEmail(String email) {
@@ -55,6 +62,10 @@ public class UserAccount {
 
     public void setPassHash(String passHash) {
         this.passHash = passHash;
+    }
+
+    public void setPassSalt(String passSalt) {
+        this.passSalt = passSalt;
     }
 
     public void setFirstName(String firstName) {
@@ -77,17 +88,17 @@ public class UserAccount {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        UserAccount target = (UserAccount) obj;
-        if (uid == null) {
-            if (target.uid != null)
+        User target = (User) obj;
+        if (id == null) {
+            if (target.id != null)
                 return false;
-        } else if (uid.equals(target.uid))
+        } else if (id.equals(target.id))
             return true;
         return false;
     }
 
     @Override
     public String toString() {
-        return String.format("%s %s, %s (%s)", uid, lastName, firstName, email);
+        return String.format("%s %s, %s (%s)", id, lastName, firstName, email);
     }
 }

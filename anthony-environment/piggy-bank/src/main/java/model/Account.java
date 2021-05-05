@@ -1,11 +1,11 @@
 package model;
 
-public class BankAccount {
+public class Account {
     private Integer aid;
     private String type;
     private Float balance;
 
-    public BankAccount(Integer aid, String type, Float balance) {
+    public Account(Integer aid, String type, Float balance) {
         this.aid = aid;
         this.type = type;
         this.balance = balance;
@@ -43,7 +43,7 @@ public class BankAccount {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        BankAccount target = (BankAccount) obj;
+        Account target = (Account) obj;
         if (aid == null) {
             if (target.aid != null)
                 return false;

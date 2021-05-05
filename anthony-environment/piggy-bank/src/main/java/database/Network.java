@@ -1,10 +1,10 @@
-package connection;
+package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Utility {
+public class Network {
     public static Connection connect() throws SQLException {
         String url = "jdbc:postgresql://localhost:5432/postgres";
         String user = "postgres";
@@ -13,7 +13,7 @@ public class Utility {
     }
 
     public static void main(String[] args) {
-        try (Connection conn = Utility.connect()) {
+        try (Connection conn = Network.connect()) {
             System.out.println("Successful connection!");
         } catch (SQLException e) {
             System.out.println("Failed connection!");
