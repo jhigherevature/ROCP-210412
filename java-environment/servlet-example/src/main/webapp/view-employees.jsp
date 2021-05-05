@@ -69,9 +69,9 @@
 			Remember that parameters are established using the name attribute. -->
 		
 		Title: <select name="emp_title">
-			<option value="teller">Teller</option>
-			<option value="manager">Manager</option>
-			<option value="developer">Developer</option>
+			<option value="teller">Entry Level</option>
+			<option value="manager">Big Boss</option>
+			<option value="developer">The Real Big Boss</option>
 		</select> <br> 
 		
 		<input type="submit">
