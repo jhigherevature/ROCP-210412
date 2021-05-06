@@ -1,0 +1,32 @@
+<!Doctype html>
+<html>
+<head>
+<title>Index Page</title>
+	<style>
+		.headers {
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+	<h1 class="headers first-header">
+	This is my paragraph
+	</h1>
+	<h3 class="headers nested-header">
+	This is a smaller Header
+	</h3>
+
+	<!-- HTML code comments follow the same syntax as XML -->
+
+	<!-- 
+		Action attribute - specify the location the form will send a request
+		Method attribute - specify the HTTP method for the request
+		Name attribute - used on an input field of the form...Specify the name
+				of a parameter which is sent with the request
+	 -->
+	<form action="https://www.google.com/search" method="GET" target="_blank">
+		<input type="text" name="q">
+		<input type="submit">
+	</form>
+</body>
+</html>
