@@ -131,6 +131,8 @@ public class CreateDonor {
 		d.setState(scan.nextLine());
 		System.out.println("zip code");
 		d.setZip(scan.nextInt());
+//		possible for skipped fix? Thanks Michael :D
+		scan.nextLine();
 		System.out.println("phone");
 		d.setPhone(scan.nextLine());
 		System.out.println("Email");

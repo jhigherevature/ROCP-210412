@@ -55,6 +55,7 @@ public class CreatePledge {
 //		services.Constraints.positiveInt(scan.nextInt());
 //		p.setPledge_amt(scan.nextInt());
 		p.setPledge_amt(services.Constraints.positiveDouble(scan.nextDouble()));
+		scan.nextLine();
 
 		System.out.println("Choose pledge status (pledged, submitted, pay_now, closed)");
 		p.setStatus_pledge(scan.nextLine());

@@ -32,7 +32,7 @@ public class AuthenticationService {
 		CUR.getCUR().setUserpass(userpass);
 		
 		if (userpass != null) {
-			if (userpass.getAccess_lvl() == "donor") {
+			if (userpass.getAccess_lvl().intern() == "donor") {
 				log.warn("Login Failed!");
 				System.out.println("Username and password combination were not found. Please try again.");
 				CUR.getCUR().incLogincounter();

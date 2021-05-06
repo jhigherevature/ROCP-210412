@@ -21,7 +21,7 @@ public class EmpPledgeMenu {
 		System.out.println("The total value of all pledges for pledge year " + CUR.getCUR().getPledgeyear() + " is: $"
 				+ pdao.getPledgeValueAll(CUR.getCUR().getPledgeyear()));
 
-		String[] menuopt = new String[] { "Create pledge", "Edit a pledge", "Remove a pledge",
+		String[] menuopt = new String[] { "Create pledge", "Edit a pledge *coming soon*", "Remove a pledge",
 				"Return to previous menu", "Logout" };
 
 		System.out.println("Please choose one of the following options:");
@@ -48,10 +48,12 @@ public class EmpPledgeMenu {
 			System.out.println("Please choose one of the following pledges to edit by pledge id number:");
 
 			List<Pledge> pledges = pdao.selectPledgesByYear(CUR.getCUR().getPledgeyear());
-
 			for (Pledge p : pledges) {
 //				System.out.println("Pledge id: "+p.getId_pledge()+", Account id: "+p.getId_account()+", Pledge value: "+p.getPledge_amt()+", Pledge value: "+p.getId_school());
-				p.toString();
+System.out.println("Pledge Id=" + p.getId_pledge() + ", Account ID=" + p.getId_account() + ", year_pledge=" + p.getYear_pledge()
+				+ ", pledge_amt=" + p.getPledge_amt() + ", School ID=" + p.getId_school() + ", date_pledged=" + p.getDate_pledged()
+				+ ", status_pledge=" + p.getStatus_pledge() + ", submission_date=" + p.getSubmission_date() + ", approval_date="
+				+ p.getApproval_date() + "]");
 			}
 			Pledge edit = pdao.selectPledge(scan.nextInt());
 			if (pdao.updatePledge(edit)) {
@@ -64,9 +66,17 @@ public class EmpPledgeMenu {
 		case 3:
 //				delete pledge
 			System.out.println("Choose pledge ID of the pledge you wish to delete");
+			pledges = pdao.selectPledgesByYear(CUR.getCUR().getPledgeyear());
+			for (Pledge p : pledges) {
+System.out.println("Pledge [id_pledge=" + p.getId_pledge() + ", id_account=" + p.getId_account() + ", year_pledge=" + p.getYear_pledge()
+				+ ", pledge_amt=" + p.getPledge_amt() + ", id_school=" + p.getId_school() + ", date_pledged=" + p.getDate_pledged()
+				+ ", status_pledge=" + p.getStatus_pledge() + ", submission_date=" + p.getSubmission_date() + ", approval_date="
+				+ p.getApproval_date() + "]");
+			}
 			Integer pledge = scan.nextInt();
 			System.out.println(pdao.selectPledge(pledge));
 			System.out.println("Confirm that you want to delete this pledge. (yes/no)");
+			scan.nextLine();
 			String yn = scan.nextLine().toLowerCase().intern();
 			if (yn == "yes") {
 				if (pdao.deletePledge(pledge)) {

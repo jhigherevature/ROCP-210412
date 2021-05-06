@@ -62,16 +62,18 @@ public class EmpAccountMenu {
 //			choose account to edit
 			System.out.println("What is the account number of the account you wish to edit?");
 			int amod = scan.nextInt();
+			scan.nextLine();
 			Account accmod = adao.selectAccount(amod);
 			System.out.println(accmod);
 //			new settings
+			accmod.setId_account(amod);
 			System.out.println("Set account's updated status (active/inactive).");
 			String g = scan.nextLine();
 			accmod.setStatus(g);
 			System.out.println("Set account's updated tax filing status.");
 			accmod.setTax_filing_status(scan.nextLine());
 //		edit account
-				adao.insertIntoAccount(accmod);
+				adao.EditAccount(accmod);
 				eam.menu();
 				break;	
 		case 5:

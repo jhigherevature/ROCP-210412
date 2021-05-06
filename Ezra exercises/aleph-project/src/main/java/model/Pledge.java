@@ -7,7 +7,7 @@ import main.CUR;
 
 
 public class Pledge implements Serializable{
-	private Integer id_pledge;
+	private Integer id_pledge = null;
 	private Integer id_account;
 	private Integer year_pledge;
 	private Double pledge_amt;
@@ -29,7 +29,7 @@ public class Pledge implements Serializable{
 	public Pledge(Integer id_pledge, Integer id_account, Integer year_pledge,
 	 Double pledge_amt,Integer id_school, Date date_pledged, 
 	 String status_pledge, Date submission_date, Date approval_date) {
-		this.id_account = null;	//id_account; 
+		this.id_account = id_pledge;	//id_account; 
 		this.year_pledge = year_pledge;
 		this.pledge_amt = pledge_amt;
 		this.id_school = id_school; 
@@ -187,10 +187,6 @@ public class Pledge implements Serializable{
 	}
 	@Override
 	public String toString() {
-		System.out.println("Pledge [id_pledge=" + id_pledge + ", id_account=" + id_account + ", year_pledge=" + year_pledge
-				+ ", pledge_amt=" + pledge_amt + ", id_school=" + id_school + ", date_pledged=" + date_pledged
-				+ ", status_pledge=" + status_pledge + ", submission_date=" + submission_date + ", approval_date="
-				+ approval_date + "]");
 		return "Pledge [id_pledge=" + id_pledge + ", id_account=" + id_account + ", year_pledge=" + year_pledge
 				+ ", pledge_amt=" + pledge_amt + ", id_school=" + id_school + ", date_pledged=" + date_pledged
 				+ ", status_pledge=" + status_pledge + ", submission_date=" + submission_date + ", approval_date="

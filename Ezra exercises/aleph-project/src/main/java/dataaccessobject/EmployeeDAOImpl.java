@@ -143,6 +143,23 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			}
 			return true;
 	}
+	
+	@Override
+	public boolean deleteEmployeebyID(Integer id) {
+		PreparedStatement ps = null;
+		try (Connection conn = ConnectUtil.getConnection()) {
+		
+			String query = "DELETE FROM project.employee WHERE id_emp=?";
+			ps = conn.prepareStatement(query);
+				
+			ps.setInt(1, id);
+			ps.executeUpdate();			
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+			return true;
+	}
 	@Override
 	public Employee selectEmployeeByLoginId(Integer id) {
 		PreparedStatement ps = null;

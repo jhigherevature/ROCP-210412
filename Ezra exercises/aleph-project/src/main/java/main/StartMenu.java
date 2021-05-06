@@ -19,21 +19,14 @@ public class StartMenu {
 	@SuppressWarnings({ "resource", "unused" })
 	public void startMenu() {
 
-//	Name of Program can be easily changed here
-//	String progName = "The Donation Fund";
-//	CUR.getCUR().setProgname(progName);
-//	Login Types can be easily changed here by adding to LoginType array
-		String[] loginType = new String[] { "Donor", "School", "Employee", "New Donor", "exit" };
+//	Name of Program can be easily changed in CUR
 
-		// start static singleton info holding class - this shouldn't be necessary
-		// correct?
-//	CUR CurrentUser = CUR.getCUR();
-//	set access token 
-//	String access_token = CurrentUser.setAccess_token(null);
+//	Login Types can be easily changed and added here by adding to LoginType array
+		String[] loginType = new String[] { "Donor", "School *coming soon*", "Employee", "New Donor", "Logout" };
+
+
 
 		String access_token = null;
-//  set logincounter variable
-//	int logincounter = 0;
 
 //		Check connection to server
 		try (Connection conn = ConnectUtil.getConnection()) {
@@ -43,12 +36,6 @@ public class StartMenu {
 			sqlE.printStackTrace();
 		}
 //		welcome message
-		log.trace("We've just greeted the user!");
-		log.debug("We've just greeted the user!");
-		log.info("We've just greeted the user!");
-		log.warn("We've just greeted the user!");
-		log.error("We've just greeted the user!");
-		log.fatal("We've just greeted the user!");
 		System.out.println("Welcome to " + CUR.getCUR().getProgname());
 
 		int menuChoiceLogin = 0;
@@ -60,16 +47,9 @@ public class StartMenu {
 			}
 //	open scanner
 			Scanner scan = new Scanner(System.in);
-
-//	String input = scan.nextLine();
-//	System.out.println("You have chosen " + input + ". Is that correct? (y/n");
-//	String input = scan.nextLine();
-//	implement confirmation loop here
-
 //			menuChoiceLogin = services.Constraints.menuCon(scan.nextInt());	//doesn't help because can only take an int value anyway
 			menuChoiceLogin = scan.nextInt();
 			
-//	GetUNandPW up = new GetUNandPW();
 			switch (menuChoiceLogin) {
 			case 1: // donor
 				Donor donor = AuthenticationService.authenticateDonor(GetUNandPW.getUNandPW());
@@ -95,7 +75,6 @@ public class StartMenu {
 				menuChoiceLogin = 5;
 				break;
 			case 3: // Employee
-
 				Employee emp = AuthenticationService.authenticateEmployee(GetUNandPW.getUNandPW());
 //	System.out.println(emp);
 				if (emp == null) {
@@ -132,12 +111,12 @@ public class StartMenu {
 		case "null":
 			System.out.println("Thank you for visiting " + CUR.getCUR().getProgname() + ". See you again soon!");
 			System.exit(0);
+			
 		case "donor":
 			log.info(access_token + " user successfully logged into donor menu");
 			System.out.println("donor menu");
 			MainDonorMenu mdm = new MainDonorMenu();
 			mdm.menu();
-
 			break;
 
 		case "emp":
@@ -146,6 +125,7 @@ public class StartMenu {
 			MainEmployeeMenu mem = new MainEmployeeMenu();
 			mem.menu();
 			break;
+			
 		case "admin":
 			log.info(access_token + " user successfully logged into admin menu");
 			System.out.println("admin menu");

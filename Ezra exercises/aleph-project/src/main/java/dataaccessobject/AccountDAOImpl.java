@@ -223,7 +223,7 @@ public class AccountDAOImpl implements AccountDAO{
 	public boolean EditAccount(Account account) {
 		PreparedStatement ps = null;
 		try (Connection conn = ConnectUtil.getConnection()) {
-			String query = "UPDATE project.account SET status=? ,tax-tax_filing_status =? WHERE id_account =? ;";
+			String query = "UPDATE project.account SET status=? , tax_filing_status =? WHERE id_account =? ;";
 			ps = conn.prepareStatement(query);
 			ps.setInt(3, account.getId_account());
 			ps.setString(1, account.getStatus());

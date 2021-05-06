@@ -14,29 +14,39 @@ public class DonorPledgeMenu {
 		System.out.println("Please choose the year you would like to examine");
 		Scanner scan = new Scanner(System.in);
 		CUR.getCUR().setPledgeyear(scan.nextInt());
-//		select * where pledgeyear=
 //		show pledge summary
 		PledgeDAOImpl pdao = new PledgeDAOImpl();
-		System.out.println("Your current total number of pledges for pledge year " + CUR.getCUR().getPledgeyear() + " is: "+pdao.getPledgeNumberAll(CUR.getCUR().getPledgeyear()));
-		System.out.println("The total value of your pledges for pledge year " + CUR.getCUR().getPledgeyear() + " is: $"+pdao.getPledgeValueAll(CUR.getCUR().getPledgeyear()));
-		System.out.println("The list of your pledges for pledge year " + CUR.getCUR().getPledgeyear() + " are as follows:");
-		List<Pledge> plist = pdao.selectPledgesByYear(CUR.getCUR().getPledgeyear(), CUR.getCUR().getAcc().getId_account());
-		for (Pledge p : plist) {
-			System.out.println(p.toString());
-			System.out.println(p);
-		}
+		System.out.println("Your current total number of pledges for pledge year " + CUR.getCUR().getPledgeyear()
+				+ " is: " + pdao.getPledgeNumber(CUR.getCUR().getAcc().getId_account(), CUR.getCUR().getPledgeyear()));
+		System.out.println("The total value of your pledges for pledge year " + CUR.getCUR().getPledgeyear() + " is: $"
+				+ pdao.getPledgeValue(CUR.getCUR().getAcc().getId_account(), CUR.getCUR().getPledgeyear()));
+//		System.out.println(
+//				"The list of your pledges for pledge year " + CUR.getCUR().getPledgeyear() + " are as follows:");
+//		List<Pledge> plist = pdao.selectPledgesByYear(CUR.getCUR().getPledgeyear(),
+//				CUR.getCUR().getAcc().getId_account());
+//		if (plist == null) {System.out.println("plist is null");}
+//		if (plist != null) {System.out.println("plist is NOT null");}
+//		for (Pledge p : plist) {
+//			System.out.println("Pledge id: "+p.getId_pledge()+", Account id: "+p.getId_account()+", Pledge value: "+p.getPledge_amt()+", Pledge value: "+p.getId_school());
 
-		String[] menuopt = new String[] { "Make a pledge", "Edit a pledge", "Remove a pledge",
-				"Return to previous menu", "Logout" };
+			//			System.out.println("id_pledge=" + p.getId_pledge() + ", id_account=" + p.getId_account()
+//					+ ", year_pledge=" + p.getYear_pledge() + ", pledge_amt=" + p.getPledge_amt() + ", id_school="
+//					+ p.getId_school() + ", date_pledged=" + p.getDate_pledged() + ", status_pledge="
+//					+ p.getStatus_pledge() + ", submission_date=" + p.getSubmission_date() + ", approval_date="
+//					+ p.getApproval_date());
+//		}
 
-		System.out.println("Please choose one of the following options:");
-		for (int i = 1; i <= menuopt.length; i++) {
+	String[] menuopt = new String[] { "Make a pledge", "Edit a pledge", "Remove a pledge", "Return to previous menu",
+			"Logout" };
+
+	System.out.println("Please choose one of the following options:");for(int i = 1;i<=menuopt.length;i++)
+	{
 			System.out.println(i + ") " + menuopt[(i - 1)]);
 		}
 //		open scanner
-		scan = new Scanner(System.in);
-		int mchoice = scan.nextInt();
-		switch (mchoice) {
+	scan=new Scanner(System.in);
+	int mchoice = scan.nextInt();switch(mchoice)
+	{
 		case 1:
 //			make a pledge
 			CreatePledge cp = new CreatePledge();
@@ -52,7 +62,15 @@ public class DonorPledgeMenu {
 		case 2:
 //			edit pledge
 			System.out.println("Please choose one of the following pledges to edit by pledge id number:");
-			
+			List<Pledge> pledges = pdao.selectPledgesByYear(CUR.getCUR().getAcc().getId_account(), CUR.getCUR().getPledgeyear());
+
+			for (Pledge p : pledges) {
+//				System.out.println("Pledge id: "+p.getId_pledge()+", Account id: "+p.getId_account()+", Pledge value: "+p.getPledge_amt()+", Pledge value: "+p.getId_school());
+System.out.println("Pledge ID=" + p.getId_pledge() + ", Account ID=" + p.getId_account() + ", year_pledge=" + p.getYear_pledge()
+				+ ", pledge_amt=" + p.getPledge_amt() + ", School ID=" + p.getId_school() + ", date_pledged=" + p.getDate_pledged()
+				+ ", status_pledge=" + p.getStatus_pledge() + ", submission_date=" + p.getSubmission_date() + ", approval_date="
+				+ p.getApproval_date());
+			}
 			Pledge edit = pdao.selectPledgebyDonor(scan.nextInt());
 			if (edit == null) { 
 				System.out.println("Please choose the pledge id from one of the above choices only"); 
@@ -96,6 +114,6 @@ public class DonorPledgeMenu {
 
 			break;
 		}
-	}
+}
 
 }

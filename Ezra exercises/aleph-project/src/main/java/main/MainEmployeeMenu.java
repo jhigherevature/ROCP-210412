@@ -6,7 +6,7 @@ public class MainEmployeeMenu {
 
 	public void menu() {
 
-		String[] menuopt = new String[] { "Account Menu", "Donor Menu", "Pledge Menu", "Logout" };
+		String[] menuopt = new String[] { "Account Menu", "Donor Menu", "Pledge Menu", "Logout", "Employee Management(Admin only)" };
 
 		System.out.println("Please choose one of the following options:");
 		for (int i = 1; i <= menuopt.length; i++) {
@@ -35,6 +35,20 @@ public class MainEmployeeMenu {
 			System.out.println("Logging out of " + CUR.getCUR().getProgname() + ".");
 			System.exit(0);
 
+		case 5:
+			System.out.println("Only administrators may use this menu");
+			String token = CUR.getCUR().getEmp().getEmp_title().intern();
+			if (token == "admin") {
+				System.out.println("Credentials have been confirmed. \nEmployee Management Menu");
+				EmployeeManagement emm = new EmployeeManagement();
+				emm.menu();
+			}
+			else {System.out.println("You do not have permission to access this menu. If this is a mistake please contact system administrator. Returning you to Employee Menu");
+			
+			menu();
+			}
+
+			break;
 		}
 
 	}

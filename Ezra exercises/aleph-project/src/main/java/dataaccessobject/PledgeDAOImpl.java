@@ -236,6 +236,7 @@ public class PledgeDAOImpl implements PledgeDAO {
 				pledge.setId_pledge(rs.getInt("id_pledge"));
 				pledge.setId_account(rs.getInt("id_account"));
 				pledge.setYear_pledge(rs.getInt("year_pledge"));
+//				get double currently trying others
 				pledge.setPledge_amt(rs.getDouble("pledge_amt"));
 				pledge.setId_school(rs.getInt("id_school"));
 				pledge.setDate_pledged(rs.getDate("date_pledged"));
