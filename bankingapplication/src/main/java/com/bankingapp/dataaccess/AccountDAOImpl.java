@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,11 +124,9 @@ public class AccountDAOImpl implements AccountDAO {
 					preparedStatement = connection.prepareStatement(sql);
 					preparedStatement.setInt(1, accountId);
 					preparedStatement.setInt(2, customer.getCustomerId());
-					preparedStatement.addBatch();
+					preparedStatement.executeUpdate();
 				}
 			}
-
-			preparedStatement.executeBatch();
 
 			logger.debug("Account customer Ids successfully inserted");
 
@@ -217,16 +213,14 @@ public class AccountDAOImpl implements AccountDAO {
 				preparedStatement.setDouble(1, transaction.getAmount());
 				Integer customerId = transaction.getCustomer() != null ? transaction.getCustomer().getCustomerId()
 						: null;
-				preparedStatement.setDouble(2, customerId);
+				preparedStatement.setObject(2, customerId);
 				preparedStatement.setDouble(3, transaction.getTransactionType().getTransactionTypeId());
 				
 				preparedStatement.setObject(4,
 						transaction.getSourceAccount() != null ? transaction.getSourceAccount().getAccountId() : null);
 				preparedStatement.setDouble(5, transaction.getTargetAccount().getAccountId());
-				preparedStatement.addBatch();
+				preparedStatement.executeUpdate();
 			}
-
-			preparedStatement.executeBatch();
 			
 
 			logger.debug("Record transaction inserted successfully");

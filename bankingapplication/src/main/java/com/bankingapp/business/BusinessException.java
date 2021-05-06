@@ -1,5 +1,6 @@
 package com.bankingapp.business;
 
+@SuppressWarnings("serial")
 public class BusinessException extends Exception {
 
 	public BusinessException() {

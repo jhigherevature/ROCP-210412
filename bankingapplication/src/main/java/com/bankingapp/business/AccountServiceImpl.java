@@ -85,7 +85,8 @@ public class AccountServiceImpl implements AccountService {
 				transaction.setTargetAccount(targetAccount);
 				transaction.setTransactionType(transactionType);
 				accountTransactions.add(transaction);
-				logger.info(customer.getCustomerName() + " requested a " + transactionType.getTransactionTypeName()
+				String transactionOwnerName = customer != null ? customer.getCustomerName() : "Employee";
+				logger.info(transactionOwnerName + " requested a " + transactionType.getTransactionTypeName()
 						+ "on account " + targetAccount.getAccountNumber());
 			}
 			accountDAO.recordTransactions(accountTransactions);

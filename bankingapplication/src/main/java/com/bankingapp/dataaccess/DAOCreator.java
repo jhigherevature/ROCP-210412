@@ -15,7 +15,7 @@ public class DAOCreator {
 	public static AccountDAO getAccountDAO() throws SQLException {
 		if(accountDAO == null) {
 			logger.debug("Creating AccountDAO");
-			accountDAO = new AccountDAOImpl(DatabaseConnector.getConnection());
+			accountDAO = new AccountDAOImpl(DatabaseConnector.getConnection()); //Connection created with DatabaseConnector factory and injected
 		}
 		return accountDAO;
 	}

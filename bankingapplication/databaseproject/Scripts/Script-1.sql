@@ -8,6 +8,12 @@ INSERT INTO customer (customer_name,address,email,user_id) VALUES (?,?,?,?);
 
 DELETE FROM bank_user;
 
+DELETE FROM customer;
+
+DELETE FROM account;
+
+DELETE FROM account_customer ;
+
 SELECT customer_name, address, email FROM customer 
 JOIN bank_user ON customer.user_id = bank_user.user_id 
 WHERE bank_user.user_name = 'meldee' AND bank_user.user_password = '29.6976m';
@@ -90,14 +96,15 @@ account_status varchar(10) DEFAULT 'pending';
 INSERT INTO bankingappdb.employee_role (role_name) VALUES
 	 ('Teller'),
 	 ('Admin');
-	
+
+DELETE FROM bank_user WHERE user_name ='deanW'
 SELECT * FROM bank_user;
-INSERT INTO bank_user (user_name,user_password) values('mduah','28mduah');
+INSERT INTO bank_user (user_name,user_password) values('sbean','28beans');
 
 SELECT employee_name, r.role_id, r.role_name FROM employee AS e JOIN bank_user AS u ON e.user_id = u.user_id JOIN employee_role AS r ON r.role_id = e.role_id WHERE u.user_name ='mduah' AND u.user_password ='28mduah';
 
-INSERT INTO employee (employee_name,role_id,user_id) VALUES('Melanie Duah','2','13');
-SELECT * FROM employee_role; 
+INSERT INTO employee (employee_name,role_id,user_id) VALUES('Sammy Bean','1','14');
+SELECT * FROM employee; 
 
 SELECT a.account_number, amount, transaction_type_name, transaction_date FROM account_transaction
 JOIN customer ON customer.customer_id = account_transaction.customer_id
@@ -110,7 +117,9 @@ SELECT c.customer_id, customer_name, address, email FROM customer AS c JOIN acco
 
 SELECT a.account_id, account_number, act.account_type_name, account_balance, account_status FROM account AS a JOIN account_type AS act ON a.account_type_id = act.account_type_id;
 
-DELETE FROM account_transaction WHERE source_account_id = '2';
-DELETE FROM account_transaction WHERE target_account_id = '2';
-DELETE FROM account_customer WHERE customer_id = '2';
-DELETE FROM account WHERE account_id = '2';
+DELETE FROM account_transaction WHERE source_account_id = '90';
+DELETE FROM account_transaction WHERE target_account_id = '90';
+DELETE FROM account_customer WHERE customer_id = '90';
+DELETE FROM account WHERE account_id = '90';
+
+SELECT * FROM account_transaction at2 

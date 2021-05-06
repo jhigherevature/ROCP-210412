@@ -81,8 +81,8 @@ public class EmployeeUI {
 				viewAccountInformation();
 				break;
 			case 4:
-				if(isAdmin)
-				withdrawMoneyFromAccount();
+				if (isAdmin)
+					withdrawMoneyFromAccount();
 				else {
 					System.out.println("See you again soon, " + employee.getEmployeeName());
 					break loop;
@@ -114,20 +114,32 @@ public class EmployeeUI {
 
 	private void transferMoneyBetweenAccounts() throws BusinessException {
 		List<Account> accounts = accountService.findAllAccounts();
-		Account sourceAccount = getAccount("Which account would like to transfer money from?", accounts);
+		if (accounts.size() >= 2) {
+			Account sourceAccount = getAccount("Which account would like to transfer money from?", accounts);
 
-		Account targetAccount = getAccount("Which account would like to transfer money to?", accounts);
+			Account targetAccount = getAccount("Which account would like to transfer money to?", accounts);
+			
+			if(!sourceAccount.getAccountNumber().equals(targetAccount.getAccountNumber())) {
+				double amount = ScannerUtilities.getAmountOfMoney("How much money would you like to transfer?");
 
-		double amount = ScannerUtilities.getAmountOfMoney("How much money would you like to transfer?");
+				double newSourceBalance = sourceAccount.getAccountBalance() - amount;
+				if (newSourceBalance >= 0) {
+					accountService.transferMoney(sourceAccount, targetAccount, null, amount);
 
-		double newSourceBalance = sourceAccount.getAccountBalance() - amount;
-		if (newSourceBalance >= 0) {
-			accountService.transferMoney(sourceAccount, targetAccount, null, amount);
-
-			System.out.println(amount + " has successfully been transferred from " + sourceAccount.getAccountNumber()
-					+ " to " + targetAccount.getAccountNumber());
-		} else {
-			System.out.println("Insufficient funds in the source account");
+					System.out.println(amount + " has successfully been transferred from "
+							+ sourceAccount.getAccountNumber() + " to " + targetAccount.getAccountNumber());
+				} else {
+					System.out.println("Insufficient funds in the source account");
+				}
+			}else {
+				System.out.println("You cannot transfer money from an account to itself. Try again");
+				transferMoneyBetweenAccounts();
+			}
+		}else if(accounts.size() > 0){
+			System.out.println("There is only 1 account in the system.  Transfer is not possible at this time");
+		}
+		else {
+			System.out.println("There are no accounts in the system. Transfer is not possible at this time");
 		}
 	}
 
@@ -148,7 +160,8 @@ public class EmployeeUI {
 		Account account = getAccount("Select account to withdraw money from", accountService.findAllAccounts());
 
 		if (account != null) {
-			System.out.println("Account " + account.getAccountNumber() + " has " + account.getAccountBalance() + " remaining");
+			System.out.println(
+					"Account " + account.getAccountNumber() + " has " + account.getAccountBalance() + " remaining");
 			double amount = ScannerUtilities.getAmountOfMoney("How much money would you like to withdraw?");
 
 			double newBalance = account.getAccountBalance() - amount;
@@ -246,21 +259,26 @@ public class EmployeeUI {
 
 	private void approveAccountApplication() throws BusinessException {
 		System.out.println();
-		Account account = getAccount("Here are the current list of accounts pending approval. Select one",
-				accountService.findAllUnapprovedAccounts());
+		List<Account> accounts = accountService.findAllUnapprovedAccounts();
+		if (accounts.size() > 0) {
+			Account account = getAccount("Here are the current list of accounts pending approval. Select one",
+					accounts);
 
-		if (account != null) {
+			if (account != null) {
 
-			System.out.println("What would you like to do?");
-			System.out.println("1. approve account");
-			System.out.println("2. deny account");
+				System.out.println("What would you like to do?");
+				System.out.println("1. approve account");
+				System.out.println("2. deny account");
 
-			int response = ScannerUtilities.getResponse(1, 2);
-			String newAccountStatus = response == 1 ? "approved" : "denied";
-			account.setStatus(newAccountStatus);
+				int response = ScannerUtilities.getResponse(1, 2);
+				String newAccountStatus = response == 1 ? "approved" : "denied";
+				account.setStatus(newAccountStatus);
 
-			accountService.updateAccount(account);
-			approveAccountApplication();
+				accountService.updateAccount(account);
+				approveAccountApplication();
+			}
+		} else {
+			System.out.println("There are no accounts pending approval");
 		}
 	}
 }

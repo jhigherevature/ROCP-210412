@@ -1,4 +1,4 @@
-package com.bankingapp.business.tests;
+package com.bankingapp.dataaccess.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -207,7 +207,7 @@ class AccountDAOImplTest {
 	@DisplayName("recordTransactions should throw DAOException if SQLException is thrown")
 	void recordTransactionsShouldThrowDAOException() throws SQLException {
 		// Arrange
-		doThrow(SQLException.class).when(preparedStatement).executeBatch();
+		doThrow(SQLException.class).when(preparedStatement).executeUpdate();
 		AccountDAOImpl accountDAO = new AccountDAOImpl(connection);
 		TransactionType transactionType = new TransactionType();
 		transactionType.setTransactionTypeId(3);

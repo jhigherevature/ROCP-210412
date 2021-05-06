@@ -28,6 +28,9 @@ public class CustomerUI {
 
 	public void signUp() {
 		createCustomerFromPrompt();
+		System.out.println("Signup successful");
+		System.out.println("Log into your new user account");
+		System.out.println();
 		logIn();
 	}
 
@@ -50,7 +53,8 @@ public class CustomerUI {
 
 		Customer customer = null;
 		try {
-			customer = customerService.createNewCustomer(userName, password, userName, email, address);
+			customer = customerService.createNewCustomer(userName, password, name, email, address);
+			
 			logger.debug("new customer created successfully");
 		} catch (BusinessException e) {
 			logger.error("failed to create new account", e);

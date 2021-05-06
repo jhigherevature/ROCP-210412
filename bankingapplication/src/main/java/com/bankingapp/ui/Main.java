@@ -15,37 +15,39 @@ public class Main {
 	public static void main(String[] args) throws SQLException {
 		Logger logger = LogManager.getLogger(Main.class);
 		logger.info("Application started");
-		
-		CustomerService customerService = BusinessServiceCreator.getCustomerService();
+
+		CustomerService customerService = BusinessServiceCreator.getCustomerService(); //factory
 		AccountService accountService = BusinessServiceCreator.getAccountService();
-        EmployeeService employeeService = BusinessServiceCreator.getEmployeeService();
-        
+		EmployeeService employeeService = BusinessServiceCreator.getEmployeeService();
+
 		CustomerUI customerUI = new CustomerUI(customerService, accountService);
-        EmployeeUI employeeUI = new EmployeeUI(employeeService, accountService, customerService);
-        
-		System.out.println("Welcome to Bank of Chevy");
-		System.out.println("What can we do for you today?");
+		EmployeeUI employeeUI = new EmployeeUI(employeeService, accountService, customerService);
 
-		System.out.println("1.Login as Customer");
-		System.out.println("2.login as Employee");
-		System.out.println("3.Sign up as a new Customer");
-		System.out.println("4.Quit");
+		loop: while (true) {
+			System.out.println("Welcome to Bank of Chevy");
+			System.out.println("What can we do for you today?");
 
-		int userResponse = ScannerUtilities.getResponse(1, 4);
+			System.out.println("1.Login as Customer");
+			System.out.println("2.login as Employee");
+			System.out.println("3.Sign up as a new Customer");
+			System.out.println("4.Quit");
 
-		switch (userResponse) {
-		case 1:
-			customerUI.logIn();
-			break;
-		case 2:
-			employeeUI.logIn();
-			break;
-		case 3:
-			customerUI.signUp();
-			break;
-		case 4:
-			System.out.println("Thanks for stopping by. Hope to see you soon");
-			break;
+			int userResponse = ScannerUtilities.getResponse(1, 4);
+
+			switch (userResponse) {
+			case 1:
+				customerUI.logIn();
+				break;
+			case 2:
+				employeeUI.logIn();
+				break;
+			case 3:
+				customerUI.signUp();
+				break;
+			case 4:
+				System.out.println("Thanks for stopping by. Hope to see you soon");
+				break loop;
+			}
 		}
 	}
 }
