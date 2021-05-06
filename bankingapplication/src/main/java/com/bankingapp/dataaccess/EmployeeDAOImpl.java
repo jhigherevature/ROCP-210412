@@ -15,12 +15,17 @@ import com.bankingapp.entities.EmployeeRole;
 public class EmployeeDAOImpl implements EmployeeDAO{
 
 	private Logger logger = LogManager.getLogger(EmployeeDAOImpl.class);
+	private Connection connection;
+	
+	public EmployeeDAOImpl(Connection connection) {
+		this.connection = connection;
+	}
+	
 	@Override
 	public Employee findEmployee(String userName, String password)  throws DAOException{
 		Employee employee = null;
 		try {
-			Connection connection = DatabaseConnector.getConnection();
-
+	
 			String sql = "SELECT employee_name, r.role_id, r.role_name FROM employee AS e JOIN bank_user AS u ON e.user_id = u.user_id JOIN employee_role AS r ON r.role_id = e.role_id WHERE u.user_name =? AND u.user_password =?";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);

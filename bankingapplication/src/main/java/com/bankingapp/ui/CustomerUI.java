@@ -1,6 +1,8 @@
 package com.bankingapp.ui;
 
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,7 +20,7 @@ public class CustomerUI {
 	private AccountService accountService;
 
 	private Logger logger = LogManager.getLogger(CustomerUI.class);
-	
+
 	public CustomerUI(CustomerService customerService, AccountService accountService) {
 		this.customerService = customerService;
 		this.accountService = accountService;
@@ -51,7 +53,7 @@ public class CustomerUI {
 			customer = customerService.createNewCustomer(userName, password, userName, email, address);
 			logger.debug("new customer created successfully");
 		} catch (BusinessException e) {
-			logger.error("failed to create new account",e);
+			logger.error("failed to create new account", e);
 		}
 
 		return customer;
@@ -86,6 +88,7 @@ public class CustomerUI {
 	private void startCustomerActivities(Customer customer) throws BusinessException {
 
 		loop: while (true) {
+			System.out.println();
 			System.out.println("What will you like to do today, " + customer.getCustomerName());
 			System.out.println("1.Open a new account");
 			System.out.println("2.View exsisting account");
@@ -106,7 +109,7 @@ public class CustomerUI {
 				viewCustomerAccount(customer);
 				break;
 			case 3:
-				System.out.println("View transaction");
+				ViewAllTransactions(customer);
 				break;
 			case 4:
 				transferFunds(customer);
@@ -168,7 +171,7 @@ public class CustomerUI {
 			Account account = accountList.get(i);
 			System.out.println(accountOption + ". " + account.getAccountNumber());
 		}
-		
+
 		int customerResponse = ScannerUtilities.getResponse(1, accountList.size());
 		return accountList.get(customerResponse - 1);
 	}
@@ -248,23 +251,21 @@ public class CustomerUI {
 
 	private void ViewAllTransactions(Customer customer) throws BusinessException {
 		List<AccountTransaction> transactions = accountService.getAllTransactionByCustomer(customer);
-		for (AccountTransaction accountTransaction : transactions) {
-			System.out.print("Date: ");
-			System.out.print(accountTransaction.getDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
-			System.out.print("Account: ");
-			System.out.print(accountTransaction.getTargetAccount().getAccountNumber());
-			System.out.print("Amount: ");
-			System.out.print(accountTransaction.getAmount());
-			System.out.println();
+		if (transactions.size() > 0) {
+			logger.debug("customer has " + transactions.size() + " transactions");
+			for (AccountTransaction accountTransaction : transactions) {
+				System.out.print("Date: ");
+				System.out.print(accountTransaction.getDate().atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
+				System.out.print(" Account: ");
+				System.out.print(accountTransaction.getTargetAccount().getAccountNumber());
+				System.out.print(" Amount: ");
+				System.out.print(accountTransaction.getAmount());
+				System.out.println();
+			}
+		}else {
+			logger.debug("customer has no " + transactions.size() + " transactions");
+			System.out.println("Customer has no transactions");
 		}
-	}
-
-	public static void main(String[] args) throws BusinessException {
-		Customer customer = new CustomerServiceImpl(new CustomerDAOImpl()).findCustomer("jclaude", "28claude");
-		var ui = new CustomerUI(new CustomerServiceImpl(new CustomerDAOImpl()),
-				new AccountServiceImpl(new AccountDAOImpl()));
-		ui.ViewAllTransactions(customer);
-		// viewInformation(customer);
-		// openNewAccount(new Scanner(System.in));
+		System.out.println();
 	}
 }

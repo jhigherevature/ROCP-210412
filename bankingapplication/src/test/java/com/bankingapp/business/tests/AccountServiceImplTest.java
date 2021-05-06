@@ -15,6 +15,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.function.Executable;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -65,9 +66,10 @@ class AccountServiceImplTest {
 		AccountServiceImpl accountServiceImpl = new AccountServiceImpl(accountDAO);
 
 		// Act
+		Executable createNewAccount = () -> accountServiceImpl.createNewAccount(accountType, 10.0, customer);
 
 		// Assert
-		assertThrows(BusinessException.class, () -> accountServiceImpl.createNewAccount(accountType, 10.0, customer));
+		assertThrows(BusinessException.class, createNewAccount);
 	}
 
 	@Test
@@ -84,7 +86,6 @@ class AccountServiceImplTest {
 		// Assert
 		assertEquals(20.0, account.getAccountBalance());
 	}
-	
 
 	@Test
 	@DisplayName("depositMoney should throw BusinessException if DAOException is thrown")
@@ -95,9 +96,9 @@ class AccountServiceImplTest {
 		AccountServiceImpl accountServiceImpl = new AccountServiceImpl(accountDAO);
 
 		// Act
-
+		Executable depositMoney = () -> accountServiceImpl.depositMoney(new Account(), new Customer(), 20);
 		// Assert
-		assertThrows(BusinessException.class, () -> accountServiceImpl.depositMoney( new Account(),new Customer(), 20));
+		assertThrows(BusinessException.class, depositMoney);
 	}
 
 	@Test
@@ -129,7 +130,7 @@ class AccountServiceImplTest {
 		// Assert
 		assertEquals(20.0, account.getAccountBalance());
 	}
-	
+
 	@Test
 	@DisplayName("withdrawMoney should throw BusinessException if DAOException is thrown")
 	void withdrawMoneyShouldThrowBusinessException() throws DAOException, BusinessException {
@@ -141,11 +142,12 @@ class AccountServiceImplTest {
 		AccountServiceImpl accountServiceImpl = new AccountServiceImpl(accountDAO);
 
 		// Act
+		Executable withDrawMoney = () -> accountServiceImpl.withdrawMoney(account, new Customer(), 10);
 
 		// Assert
-		assertThrows(BusinessException.class, () -> accountServiceImpl.withdrawMoney(account,new Customer(), 10));
+		assertThrows(BusinessException.class, withDrawMoney);
 	}
-	
+
 	@Test
 	@DisplayName("transferMoney should deduct from source account and add to target account")
 	void transferMoneyShouldDeductFromSourceAndAddToTargetAccounts() throws DAOException, BusinessException {
@@ -179,7 +181,7 @@ class AccountServiceImplTest {
 		// Assert
 		assertTrue(sourceAccount.getAccountBalance() == 20.0);
 	}
-	
+
 	@Test
 	@DisplayName("transferMoney should throw BusinessException if DAOException is thrown")
 	void transferMoneyShouldThrowBusinessException() throws DAOException, BusinessException {
@@ -193,10 +195,12 @@ class AccountServiceImplTest {
 		AccountServiceImpl accountServiceImpl = new AccountServiceImpl(accountDAO);
 
 		// Act
+		Executable transferMoney = () -> accountServiceImpl.transferMoney(sourceAccount, targetAccount, new Customer(),
+				10.0);
 
 		// Assert
-		assertThrows(BusinessException.class, () -> accountServiceImpl.transferMoney(sourceAccount, targetAccount, new Customer(), 10.0));
-	} 
+		assertThrows(BusinessException.class, transferMoney);
+	}
 
 	@Test
 	@DisplayName("findAllAccounts should return all accounts")
@@ -223,9 +227,10 @@ class AccountServiceImplTest {
 		AccountServiceImpl accountServiceImpl = new AccountServiceImpl(accountDAO);
 
 		// Act
+		Executable findAllAccounts = () -> accountServiceImpl.findAllAccounts();
 
 		// Assert
-		assertThrows(BusinessException.class, () -> accountServiceImpl.findAllAccounts());
+		assertThrows(BusinessException.class, findAllAccounts);
 	}
 
 	@Test
@@ -262,9 +267,10 @@ class AccountServiceImplTest {
 		AccountServiceImpl accountServiceImpl = new AccountServiceImpl(accountDAO);
 
 		// Act
+		Executable findUApprovedAccounts = () -> accountServiceImpl.findAllUnapprovedAccounts();
 
 		// Assert
-		assertThrows(BusinessException.class, () -> accountServiceImpl.findAllUnapprovedAccounts());
+		assertThrows(BusinessException.class, findUApprovedAccounts);
 	}
 
 	@Test
@@ -292,9 +298,10 @@ class AccountServiceImplTest {
 		AccountServiceImpl accountServiceImpl = new AccountServiceImpl(accountDAO);
 
 		// Act
+		Executable getAllAccountTypes = () -> accountServiceImpl.getAllAccountTypes();
 
 		// Assert
-		assertThrows(BusinessException.class, () -> accountServiceImpl.getAllAccountTypes());
+		assertThrows(BusinessException.class, getAllAccountTypes);
 	}
 
 	@Test
@@ -324,37 +331,40 @@ class AccountServiceImplTest {
 		AccountServiceImpl accountServiceImpl = new AccountServiceImpl(accountDAO);
 
 		// Act
+		Executable findAccountsOfCustomer = () -> accountServiceImpl.findAccountsOfCustomer(customer);
 
 		// Assert
-		assertThrows(BusinessException.class, () -> accountServiceImpl.findAccountsOfCustomer(customer));
+		assertThrows(BusinessException.class, findAccountsOfCustomer);
 	}
 
 	@Test
+	@DisplayName("recordTransactions should throw BusinessException if DAOException is thrown")
 	void recordTransactionsShouldThrowBusinessException() throws DAOException, BusinessException {
 		// Arrange
 		doThrow(DAOException.class).when(accountDAO).recordTransactions(any());
 		AccountServiceImpl accountServiceImpl = new AccountServiceImpl(accountDAO);
 
 		// Act
+		Executable recordTransactions = () -> accountServiceImpl.recordTransactions(new Account(), new Account(),
+				10.0, "test transaction", new Customer());
 
 		// Assert
-		assertThrows(BusinessException.class, () -> accountServiceImpl.recordTransactions(new Account(), new Account(),
-				10.0, "test transaction", new Customer()));
+		assertThrows(BusinessException.class, recordTransactions);
 	}
-	
+
 	@Test
 	@DisplayName("updateAccount should not throw any exceptions")
 	void updateAccountShouldNotThrowAnyExceptions() throws DAOException, BusinessException {
-		//Arrange
+		// Arrange
 		doNothing().when(accountDAO).updateAccount(any(Account.class));
 		AccountServiceImpl accountServiceImpl = new AccountServiceImpl(accountDAO);
 
-		//Act
+		// Act
+		Executable updateAccount = () -> accountServiceImpl.updateAccount(new Account());
 
-		//Assert
-		assertDoesNotThrow(() -> accountServiceImpl.updateAccount(new Account()));
+		// Assert
+		assertDoesNotThrow(updateAccount);
 	}
-	
 
 	@Test
 	@DisplayName("updateAccount should throw BusinessException if DAOException is thrown")
@@ -364,24 +374,25 @@ class AccountServiceImplTest {
 		AccountServiceImpl accountServiceImpl = new AccountServiceImpl(accountDAO);
 
 		// Act
+		Executable updateAccount = () -> accountServiceImpl.updateAccount(new Account());
 
 		// Assert
-		assertThrows(BusinessException.class, () -> accountServiceImpl.updateAccount(new Account()));
+		assertThrows(BusinessException.class, updateAccount);
 	}
-	
+
 	@Test
 	@DisplayName("removeAccount should not throw any exceptions")
 	void removeAccountShouldNotThrowAnyExceptions() throws DAOException, BusinessException {
-		//Arrange
+		// Arrange
 		doNothing().when(accountDAO).deleteAccount(any(Account.class));
 		AccountServiceImpl accountServiceImpl = new AccountServiceImpl(accountDAO);
 
-		//Act
+		// Act
+		Executable removeAccount = () -> accountServiceImpl.removeAccount(new Account());
 
-		//Assert
-		assertDoesNotThrow(() -> accountServiceImpl.removeAccount(new Account()));
+		// Assert
+		assertDoesNotThrow(removeAccount);
 	}
-	
 
 	@Test
 	@DisplayName("removeAccount should throw BusinessException if DAOException is thrown")
@@ -391,16 +402,18 @@ class AccountServiceImplTest {
 		AccountServiceImpl accountServiceImpl = new AccountServiceImpl(accountDAO);
 
 		// Act
+		Executable removeAccount = () -> accountServiceImpl.removeAccount(new Account());
 
 		// Assert
-		assertThrows(BusinessException.class, () -> accountServiceImpl.removeAccount(new Account()));
+		assertThrows(BusinessException.class, removeAccount);
 	}
-	
+
 	@Test
 	@DisplayName("getAllTransactionsOfCustomer should return accounts of customer")
 	void getAllTransactionsOfCustomerShouldReturnTransactionsOfCustomer() throws DAOException, BusinessException {
 		// Arrange
-		List<AccountTransaction> transactions = Arrays.asList(new AccountTransaction(), new AccountTransaction(), new AccountTransaction());
+		List<AccountTransaction> transactions = Arrays.asList(new AccountTransaction(), new AccountTransaction(),
+				new AccountTransaction());
 		Customer customer = new Customer();
 		when(accountDAO.getAllTransactionByCustomer(customer)).thenReturn(transactions);
 
@@ -423,8 +436,9 @@ class AccountServiceImplTest {
 		AccountServiceImpl accountServiceImpl = new AccountServiceImpl(accountDAO);
 
 		// Act
+		Executable getAllTransactionsByCustomer = () -> accountServiceImpl.getAllTransactionByCustomer(customer);
 
 		// Assert
-		assertThrows(BusinessException.class, () -> accountServiceImpl.getAllTransactionByCustomer(customer));
+		assertThrows(BusinessException.class, getAllTransactionsByCustomer);
 	}
 }

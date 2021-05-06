@@ -17,12 +17,16 @@ public class CustomerDAOImpl implements CustomerDAO {
 	
 	private Logger logger = LogManager.getLogger(CustomerDAOImpl.class);
 	
+	private Connection connection;
+	public CustomerDAOImpl(Connection connection) {
+		this.connection = connection;
+	}
+
 	@Override
 	public void save(String userName, String password, String name, String email, String address) throws DAOException {
 
 		try {
-			Connection connection = DatabaseConnector.getConnection();
-
+			
 			String sql = "INSERT INTO bank_user (user_name,user_password) VALUES (?,?)";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -67,7 +71,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 		Customer customer = null;
 		try {
-			Connection connection = DatabaseConnector.getConnection();
+			
 
 			String sql = "SELECT customer_id, customer_name, address, email FROM customer JOIN bank_user ON customer.user_id = bank_user.user_id WHERE bank_user.user_name = ? AND bank_user.user_password = ?";
 
@@ -108,7 +112,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 		List<Customer> customers = new ArrayList<Customer>();
 
 		try {
-			Connection connection = DatabaseConnector.getConnection();
 
 			String sql = "SELECT customer_id, customer_name, address, email FROM customer";
 
@@ -150,7 +153,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 		List<Customer> customers = new ArrayList<Customer>();
 
 		try {
-			Connection connection = DatabaseConnector.getConnection();
 
 			String sql = "SELECT c.customer_id, customer_name, address, email FROM customer AS c JOIN account_customer AS ac ON c.customer_id = ac.customer_id  JOIN account AS a ON a.account_id = ac.account_id WHERE a.account_id =?";
 

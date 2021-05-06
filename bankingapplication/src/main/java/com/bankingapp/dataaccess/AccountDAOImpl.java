@@ -22,13 +22,18 @@ public class AccountDAOImpl implements AccountDAO {
 
 	private Logger logger = LogManager.getLogger(AccountDAOImpl.class);
 	
+	private Connection connection;
+	
+	public AccountDAOImpl(Connection connection) {
+		this.connection = connection;
+	}
+	
 	@Override
 	public List<AccountType> getAllAccountTypes() throws DAOException {
 
 		List<AccountType> accountTypes = new ArrayList<AccountType>();
 
 		try {
-			Connection connection = DatabaseConnector.getConnection();
 
 			String sql = "SELECT account_type_id, account_type_name,description FROM account_type";
 
@@ -67,8 +72,6 @@ public class AccountDAOImpl implements AccountDAO {
 		int lastAccountId = 0;
 		try {
 
-			Connection connection = DatabaseConnector.getConnection();
-
 			String sql = "SELECT  max(account_id) FROM account";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -92,7 +95,6 @@ public class AccountDAOImpl implements AccountDAO {
 	public void saveNewAccount(Account account, Customer... customers) throws DAOException {
 
 		try {
-			Connection connection = DatabaseConnector.getConnection();
 
 			String sql = "INSERT INTO account (account_number,account_balance,account_type_id) VALUES (?,?,?)";
 
@@ -144,8 +146,6 @@ public class AccountDAOImpl implements AccountDAO {
 
 		List<Account> customerAccounts = new ArrayList<Account>();
 		try {
-			Connection connection = DatabaseConnector.getConnection();
-
 			String sql = "SELECT account.account_id,account_number,account_balance, account_status FROM account JOIN account_customer ON account.account_id =account_customer.account_id JOIN customer ON account_customer.customer_id =customer.customer_id WHERE customer.customer_id=?";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -184,9 +184,7 @@ public class AccountDAOImpl implements AccountDAO {
 
 	@Override
 	public void updateAccount(Account account) throws DAOException {
-		Connection connection;
 		try {
-			connection = DatabaseConnector.getConnection();
 
 			String sql = "UPDATE account SET account_balance=?,account_status=? WHERE account_id = ?";
 
@@ -211,8 +209,6 @@ public class AccountDAOImpl implements AccountDAO {
 	@Override
 	public void recordTransactions(List<AccountTransaction> transactions) throws DAOException {
 		try {
-			Connection connection = DatabaseConnector.getConnection();
-
 			String sql = "INSERT INTO account_transaction (amount, customer_id, transaction_type_id, source_account_id, target_account_id) VALUES(?, ?, ?, ?, ?)";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -223,7 +219,8 @@ public class AccountDAOImpl implements AccountDAO {
 						: null;
 				preparedStatement.setDouble(2, customerId);
 				preparedStatement.setDouble(3, transaction.getTransactionType().getTransactionTypeId());
-				preparedStatement.setInt(4,
+				
+				preparedStatement.setObject(4,
 						transaction.getSourceAccount() != null ? transaction.getSourceAccount().getAccountId() : null);
 				preparedStatement.setDouble(5, transaction.getTargetAccount().getAccountId());
 				preparedStatement.addBatch();
@@ -242,47 +239,9 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 
 	@Override
-	public List<TransactionType> getAllTransactionTypes(Customer customer) throws DAOException {
-		List<TransactionType> transactionTypes = new ArrayList<TransactionType>();
-		try {
-			Connection connection = DatabaseConnector.getConnection();
-
-			String sql = "SELECT transaction_type_id, transaction_type_name FROM transaction_type";
-
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-			ResultSet results = preparedStatement.executeQuery();
-			
-
-			logger.debug("All transaction types successfully recevied");
-
-			while (results.next()) {
-
-				int transactionTypeId = results.getInt(1);
-				String transactionTypeName = results.getString(2);
-
-				TransactionType transactionType = new TransactionType();
-
-				transactionType.setTransactionTypeId(transactionTypeId);
-				transactionType.setTransactonTypeName(transactionTypeName);
-
-				transactionTypes.add(transactionType);
-			}
-
-		} catch (SQLException e) {
-
-			logger.error("Failed to get all transaction types", e);
-			throw new DAOException("Failed to get all transaction types", e);
-		}
-
-		return transactionTypes;
-	}
-
-	@Override
 	public TransactionType getTransactionByName(String name) throws DAOException {
 		TransactionType transactionType = null;
 		try {
-			Connection connection = DatabaseConnector.getConnection();
 
 			String sql = "SELECT transaction_type_id, transaction_type_name FROM transaction_type WHERE transaction_type_name=?";
 
@@ -315,7 +274,6 @@ public class AccountDAOImpl implements AccountDAO {
 	public List<AccountTransaction> getAllTransactionByCustomer(Customer customer) throws DAOException {
 		List<AccountTransaction> transactions = new ArrayList<AccountTransaction>();
 		try {
-			Connection connection = DatabaseConnector.getConnection();
 
 			String sql = "SELECT a.account_number, amount, transaction_type_name, transaction_date FROM account_transaction JOIN customer ON customer.customer_id = account_transaction.customer_id JOIN account a ON a.account_id = account_transaction.target_account_id JOIN transaction_type ON account_transaction.transaction_type_id = transaction_type.transaction_type_id  WHERE customer.customer_id =?";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -334,7 +292,7 @@ public class AccountDAOImpl implements AccountDAO {
 				account.setAccountNumber(results.getString(1));
 				accountTransaction.setTargetAccount(account);
 				accountTransaction
-						.setDate(results.getDate(4).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+						.setDate(results.getTimestamp(4).toLocalDateTime());
 				transactions.add(accountTransaction);
 			}
 		} catch (SQLException e) {
@@ -349,7 +307,6 @@ public class AccountDAOImpl implements AccountDAO {
 
 		List<Account> customerAccounts = new ArrayList<Account>();
 		try {
-			Connection connection = DatabaseConnector.getConnection();
 
 			String sql = "SELECT account_id, account_number, account_balance FROM account WHERE account_status=?";
 
@@ -386,7 +343,6 @@ public class AccountDAOImpl implements AccountDAO {
 	public List<Account> findAllAccounts() throws DAOException {
 		List<Account> accounts = new ArrayList<Account>();
 		try {
-			Connection connection = DatabaseConnector.getConnection();
 
 			String sql = "SELECT a.account_id, account_number, act.account_type_name, account_balance, account_status FROM account AS a JOIN account_type AS act ON a.account_type_id = act.account_type_id";
 
@@ -427,9 +383,7 @@ public class AccountDAOImpl implements AccountDAO {
 
 	@Override
 	public void deleteAccount(Account account) throws DAOException {
-		Connection connection;
 		try {
-			connection = DatabaseConnector.getConnection();
 			List<String> queries = new ArrayList<String>();
 			queries.add("DELETE FROM account_transaction WHERE source_account_id = ?");
 			queries.add("DELETE FROM account_transaction WHERE target_account_id = ?");

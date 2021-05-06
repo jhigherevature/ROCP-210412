@@ -18,8 +18,6 @@ public interface AccountDAO {
 
 	List<Account> findAccountsOfCustomer(Customer customer) throws DAOException;
 	
-	List<TransactionType> getAllTransactionTypes(Customer customer) throws DAOException;
-	
 	TransactionType getTransactionByName(String name) throws DAOException;
 
 	void updateAccount(Account account) throws DAOException;
