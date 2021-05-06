@@ -15,7 +15,14 @@ public class AuthenticationService {
 	
 	private static AuthenticationService auth = new AuthenticationService();
 	
+	/*
+	 * Recall the Singletons do not have a public constructor...
+	 */
+	private AuthenticationService () {	
+	}
+	
 	public static AuthenticationService getAuthenticationSingleton() {
+		// If the loginDAO or employeeDAO reference is null, we initialize them
 		if (auth.ldao == null || auth.edao == null)
 			auth.init();
 		

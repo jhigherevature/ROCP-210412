@@ -8,8 +8,10 @@
 </head>
 <body>
 	<h1>Welcome!</h1>
-
-
+	<p>Check This out!</p>
+	<a href="http://localhost:8080/servlet-example/hello">
+		Click here to go to Hello page!
+	</a>
 
 	<h2>Login:</h2>
 	<form action="login" method="GET">

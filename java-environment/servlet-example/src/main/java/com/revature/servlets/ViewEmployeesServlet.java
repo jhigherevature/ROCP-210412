@@ -21,7 +21,7 @@ public class ViewEmployeesServlet extends HttpServlet {
 		EmployeeDAO eDao = ConnectionUtility.getEmployeeDAO();
 		List<Employee> employees = eDao.selectAllEmployees();
 
-		request.setAttribute("employees", employees);
+		request.setAttribute("list", employees);
 		request.getRequestDispatcher("view-employees.jsp").forward(request, response);
 	}
 
