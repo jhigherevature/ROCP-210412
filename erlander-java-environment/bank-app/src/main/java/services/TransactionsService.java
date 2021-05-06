@@ -222,7 +222,7 @@ public class TransactionsService {
 						System.out
 								.print("\n please enter a number. (" + (5 - amountAttempts) + " attempts remaining): ");
 					}
-				} while (amountAttempts <= 5);
+				} while (amountAttempts < 5);
 			} else {
 				s.scan.nextLine();
 				accountAttempts++;
@@ -230,7 +230,7 @@ public class TransactionsService {
 						"\n please enter a valid account number. (" + (5 - accountAttempts) + " attempts remaining): ");
 
 			}
-		} while (!finished && accountAttempts <= 5);
+		} while (!finished && accountAttempts < 5);
 
 		System.out.println("\nReturning to transaction menu...\n");
 		menu.mainMenu(admin);
@@ -282,7 +282,7 @@ public class TransactionsService {
 						System.out
 								.print("\n please enter a number. (" + (5 - amountAttempts) + " attempts remaining): ");
 					}
-				} while (amountAttempts <= 5);
+				} while (amountAttempts < 5);
 			} else {
 				s.scan.nextLine();
 				accountAttempts++;
@@ -290,7 +290,7 @@ public class TransactionsService {
 						"\n please enter a valid account number. (" + (5 - accountAttempts) + " attempts remaining): ");
 
 			}
-		} while (!finished && accountAttempts <= 5);
+		} while (!finished && accountAttempts < 5);
 
 		System.out.println("\nReturning to transaction menu...\n");
 		menu.mainMenu(admin);
